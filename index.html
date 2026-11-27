@@ -1,0 +1,1917 @@
+<!DOCTYPE html>
+<html lang="es" class="scroll-smooth">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Python Libraries Showcase | Unidad 2 Práctica 1</title>
+  <meta name="description" content="Portfolio y documentación técnica de la colección de 12 librerías esenciales de Python para Unidad 2 Práctica 1.">
+  <!-- Tailwind CSS CDN -->
+  <script src="https://www.gstatic.com/antigravity/web/dev/tailwindcss.min.js"></script>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@400;500;600&family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+
+  <style>
+    :root {
+      --bg-dark: #070B14;
+      --card-dark: #0F172A;
+      --card-border: #1E293B;
+      --accent-emerald: #10B981;
+      --accent-cyan: #06B6D4;
+    }
+    body {
+      font-family: 'Inter', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+      background-color: var(--bg-dark);
+      color: #E2E8F0;
+    }
+    code, pre, .font-mono {
+      font-family: 'Fira Code', ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+    }
+    /* Custom Scrollbar */
+    ::-webkit-scrollbar {
+      width: 8px;
+      height: 8px;
+    }
+    ::-webkit-scrollbar-track {
+      background: #090D1A;
+    }
+    ::-webkit-scrollbar-thumb {
+      background: #1E293B;
+      border-radius: 4px;
+    }
+    ::-webkit-scrollbar-thumb:hover {
+      background: #334155;
+    }
+    /* Glow utilities */
+    .glow-emerald {
+      box-shadow: 0 0 25px -5px rgba(16, 185, 129, 0.25);
+    }
+    .glow-cyan {
+      box-shadow: 0 0 25px -5px rgba(6, 182, 212, 0.25);
+    }
+    .text-gradient {
+      background: linear-gradient(135deg, #34D399 0%, #06B6D4 50%, #38BDF8 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+    .badge-gradient {
+      background: linear-gradient(135deg, rgba(16, 185, 129, 0.15), rgba(6, 182, 212, 0.15));
+      border: 1px solid rgba(16, 185, 129, 0.3);
+    }
+    /* Syntax Highlighting Tokens */
+    .token-kw { color: #F472B6; font-weight: 600; }   /* Keywords (def, import, from, return) */
+    .token-fn { color: #38BDF8; font-weight: 500; }   /* Functions / methods */
+    .token-str { color: #34D399; }                    /* Strings */
+    .token-num { color: #FBBF24; }                    /* Numbers / Booleans */
+    .token-comment { color: #64748B; font-style: italic; } /* Comments */
+    .token-builtin { color: #A78BFA; }                /* Builtin identifiers */
+    .token-punct { color: #94A3B8; }                  /* Punctuation */
+  </style>
+</head>
+<body class="min-h-screen text-slate-100 selection:bg-emerald-500/30 selection:text-emerald-300 antialiased overflow-x-hidden">
+
+  <!-- Background Ambient Gradients -->
+  <div class="fixed inset-0 pointer-events-none z-0 overflow-hidden">
+    <div class="absolute -top-40 -left-40 w-96 h-96 bg-emerald-500/10 rounded-full blur-3xl"></div>
+    <div class="absolute top-1/3 -right-40 w-96 h-96 bg-cyan-500/10 rounded-full blur-3xl"></div>
+    <div class="absolute bottom-10 left-1/4 w-80 h-80 bg-blue-600/10 rounded-full blur-3xl"></div>
+    <div class="absolute inset-0 bg-[radial-gradient(#1e293b_1px,transparent_1px)] [background-size:24px_24px] opacity-25"></div>
+  </div>
+
+  <!-- Sticky Navbar -->
+  <header class="sticky top-0 z-40 backdrop-blur-xl bg-[#070B14]/85 border-b border-slate-800/80 transition-all">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-16 flex items-center justify-between">
+      
+      <!-- Logo & Academic Badge -->
+      <a href="#" class="flex items-center gap-3 group">
+        <div class="w-10 h-10 rounded-xl bg-gradient-to-br from-emerald-500 to-cyan-500 p-0.5 shadow-lg shadow-emerald-500/20 group-hover:scale-105 transition-transform">
+          <div class="w-full h-full bg-[#070B14] rounded-[10px] flex items-center justify-center">
+            <span class="font-mono font-bold text-sm bg-gradient-to-r from-emerald-400 to-cyan-400 bg-clip-text text-transparent">Py</span>
+          </div>
+        </div>
+        <div>
+          <div class="flex items-center gap-2">
+            <span class="font-bold text-slate-100 text-sm tracking-tight group-hover:text-emerald-400 transition-colors">Python Showcase</span>
+            <span class="px-2 py-0.5 text-[11px] font-semibold bg-emerald-500/10 text-emerald-400 border border-emerald-500/30 rounded-full">Unidad 2</span>
+          </div>
+          <p class="text-[11px] text-slate-400 hidden sm:block">Práctica 1 • Librerías Esenciales</p>
+        </div>
+      </a>
+
+      <!-- Desktop Nav Links -->
+      <nav class="hidden md:flex items-center gap-1 lg:gap-2">
+        <a href="#examples" class="px-3 py-1.5 text-xs font-medium text-slate-300 hover:text-emerald-400 hover:bg-slate-800/60 rounded-lg transition-colors">Ejemplos (12)</a>
+        <a href="#repository" class="px-3 py-1.5 text-xs font-medium text-slate-300 hover:text-cyan-400 hover:bg-slate-800/60 rounded-lg transition-colors">Estructura Repo</a>
+        <a href="#quickstart" class="px-3 py-1.5 text-xs font-medium text-slate-300 hover:text-cyan-400 hover:bg-slate-800/60 rounded-lg transition-colors">Entorno & Setup</a>
+        <a href="#documentation" class="px-3 py-1.5 text-xs font-medium text-slate-300 hover:text-emerald-400 hover:bg-slate-800/60 rounded-lg transition-colors">README Guía</a>
+      </nav>
+
+      <!-- Action Buttons -->
+      <div class="flex items-center gap-3">
+        <a href="https://github.com" target="_blank" rel="noopener noreferrer" 
+           class="inline-flex items-center gap-2 px-3.5 py-1.5 text-xs font-semibold text-slate-200 bg-slate-800/80 hover:bg-slate-700/80 border border-slate-700 hover:border-slate-600 rounded-lg shadow-sm transition-all hover:scale-[1.02] active:scale-[0.98]">
+          <svg class="w-4 h-4 fill-current text-slate-300" viewBox="0 0 24 24">
+            <path fill-rule="evenodd" clip-rule="evenodd" d="M12 2C6.477 2 2 6.484 2 12.017c0 4.425 2.865 8.18 6.839 9.504.5.092.682-.217.682-.483 0-.237-.008-.868-.013-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.53 1.032 1.53 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.029-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0112 6.844c.85.004 1.705.115 2.504.337 1.909-1.296 2.747-1.027 2.747-1.027.546 1.379.202 2.398.1 2.651.64.7 1.028 1.595 1.028 2.688 0 3.848-2.339 4.695-4.566 4.943.359.309.678.92.678 1.855 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482A10.019 10.019 0 0022 12.017C22 6.484 17.522 2 12 2z"/>
+          </svg>
+          <span class="hidden sm:inline">GitHub Repository</span>
+          <span class="sm:hidden">Repo</span>
+        </a>
+
+        <!-- Mobile Menu Toggle Button -->
+        <button id="mobileMenuBtn" aria-label="Abrir menú" class="md:hidden p-2 text-slate-400 hover:text-slate-100 hover:bg-slate-800 rounded-lg">
+          <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7"></path>
+          </svg>
+        </button>
+      </div>
+
+    </div>
+
+    <!-- Mobile Navigation Drawer -->
+    <div id="mobileMenu" class="hidden md:hidden px-4 pt-2 pb-4 space-y-1 bg-[#090E1A] border-b border-slate-800">
+      <a href="#examples" class="block px-3 py-2 text-sm font-medium text-slate-200 hover:text-emerald-400 hover:bg-slate-800/80 rounded-lg">Librerías (12 Ejemplos)</a>
+      <a href="#repository" class="block px-3 py-2 text-sm font-medium text-slate-200 hover:text-cyan-400 hover:bg-slate-800/80 rounded-lg">Estructura del Proyecto</a>
+      <a href="#quickstart" class="block px-3 py-2 text-sm font-medium text-slate-200 hover:text-cyan-400 hover:bg-slate-800/80 rounded-lg">Configuración de Entorno Virtual</a>
+      <a href="#documentation" class="block px-3 py-2 text-sm font-medium text-slate-200 hover:text-emerald-400 hover:bg-slate-800/80 rounded-lg">Guía Paso a Paso README</a>
+    </div>
+  </header>
+
+  <!-- Main Container -->
+  <main class="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-10 sm:pt-16 pb-24 space-y-24">
+
+    <!-- HERO SECTION -->
+    <section class="text-center space-y-8 max-w-4xl mx-auto">
+      
+      <!-- Pill Badge -->
+      <div class="inline-flex items-center gap-2 px-3 py-1.5 rounded-full badge-gradient text-xs font-semibold text-emerald-300 shadow-sm">
+        <span class="flex h-2 w-2 rounded-full bg-emerald-400 animate-pulse"></span>
+        <span>Universidad • Unidad 2: Práctica 1</span>
+        <span class="text-slate-500">|</span>
+        <span class="text-cyan-300">Colección de Scripts Python 3.9+</span>
+      </div>
+
+      <!-- Title -->
+      <div class="space-y-4">
+        <h1 class="text-4xl sm:text-5xl lg:text-6xl font-extrabold tracking-tight">
+          <span class="block text-slate-100">Python Libraries Showcase</span>
+          <span class="text-gradient">Unidad 2 Práctica 1</span>
+        </h1>
+        <p class="text-base sm:text-lg text-slate-400 max-w-2xl mx-auto leading-relaxed">
+          Una suite técnica completa con <strong class="text-slate-200 font-semibold">12 scripts prácticos y autocontenidos</strong> que demuestran la potencia de Python, abarcando desde utilidades nativas de la biblioteca estándar hasta analítica de datos, generación corporativa de PDFs, APIs con Flask y Machine Learning supervisado.
+        </p>
+      </div>
+
+      <!-- Hero Call To Action Buttons -->
+      <div class="flex flex-wrap items-center justify-center gap-4 pt-2">
+        <!-- CTA 1: View GitHub Repository -->
+        <a href="https://github.com" target="_blank" rel="noopener noreferrer"
+           class="inline-flex items-center gap-3 px-6 py-3.5 rounded-xl font-semibold text-sm text-slate-900 bg-gradient-to-r from-emerald-400 to-cyan-400 hover:from-emerald-300 hover:to-cyan-300 shadow-lg shadow-emerald-500/25 hover:shadow-cyan-500/30 transition-all hover:scale-[1.03] active:scale-[0.98]">
+          <svg class="w-5 h-5 fill-current" viewBox="0 0 24 24">
+            <path fill-rule="evenodd" clip-rule="evenodd" d="M12 2C6.477 2 2 6.484 2 12.017c0 4.425 2.865 8.18 6.839 9.504.5.092.682-.217.682-.483 0-.237-.008-.868-.013-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.53 1.032 1.53 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.029-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0112 6.844c.85.004 1.705.115 2.504.337 1.909-1.296 2.747-1.027 2.747-1.027.546 1.379.202 2.398.1 2.651.64.7 1.028 1.595 1.028 2.688 0 3.848-2.339 4.695-4.566 4.943.359.309.678.92.678 1.855 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482A10.019 10.019 0 0022 12.017C22 6.484 17.522 2 12 2z"/>
+          </svg>
+          <span>View GitHub Repository</span>
+        </a>
+
+        <!-- CTA 2: Explore Examples -->
+        <a href="#examples"
+           class="inline-flex items-center gap-2 px-6 py-3.5 rounded-xl font-semibold text-sm text-slate-200 bg-slate-800/80 hover:bg-slate-700/80 border border-slate-700 hover:border-emerald-500/50 shadow-sm transition-all hover:scale-[1.02] active:scale-[0.98]">
+          <span>Explore Examples</span>
+          <svg class="w-4 h-4 text-emerald-400 animate-bounce" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 14l-7 7m0 0l-7-7m7 7V3"></path>
+          </svg>
+        </a>
+
+        <!-- CTA 3: README Docs -->
+        <a href="#documentation"
+           class="inline-flex items-center gap-2 px-5 py-3.5 rounded-xl font-semibold text-sm text-slate-400 hover:text-cyan-300 hover:bg-slate-800/50 transition-colors">
+          <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"></path>
+          </svg>
+          <span>Guía Paso a Paso</span>
+        </a>
+      </div>
+
+      <!-- Quick Metrics Bar -->
+      <div class="grid grid-cols-2 sm:grid-cols-4 gap-3 pt-6 max-w-3xl mx-auto">
+        <div class="p-4 rounded-xl bg-slate-900/60 border border-slate-800/80 backdrop-blur-sm">
+          <div class="text-2xl font-bold text-emerald-400">12</div>
+          <div class="text-xs text-slate-400 font-medium mt-0.5">Librerías Implementadas</div>
+        </div>
+        <div class="p-4 rounded-xl bg-slate-900/60 border border-slate-800/80 backdrop-blur-sm">
+          <div class="text-2xl font-bold text-cyan-400">4 / 8</div>
+          <div class="text-xs text-slate-400 font-medium mt-0.5">Estándar / Externas</div>
+        </div>
+        <div class="p-4 rounded-xl bg-slate-900/60 border border-slate-800/80 backdrop-blur-sm">
+          <div class="text-2xl font-bold text-purple-400">PEP 8</div>
+          <div class="text-xs text-slate-400 font-medium mt-0.5">Tipado & Limpieza</div>
+        </div>
+        <div class="p-4 rounded-xl bg-slate-900/60 border border-slate-800/80 backdrop-blur-sm">
+          <div class="text-2xl font-bold text-amber-400">100%</div>
+          <div class="text-xs text-slate-400 font-medium mt-0.5">Documentado y Probado</div>
+        </div>
+      </div>
+
+    </section>
+
+    <!-- INTERACTIVE FILTER & SEARCH BAR -->
+    <section id="examples" class="space-y-6 pt-4">
+      <div class="flex flex-col md:flex-row md:items-center justify-between gap-4 border-b border-slate-800 pb-6">
+        <div>
+          <div class="flex items-center gap-2.5">
+            <div class="p-2 rounded-lg bg-emerald-500/10 border border-emerald-500/20 text-emerald-400">
+              <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 11H5m14 0a2 2 0 012 2v6a2 2 0 01-2 2H5a2 2 0 01-2-2v-6a2 2 0 012-2m14 0V9a2 2 0 00-2-2M5 11V9a2 2 0 012-2m0 0V5a2 2 0 012-2h6a2 2 0 012 2v2M7 7h10"></path>
+              </svg>
+            </div>
+            <div>
+              <h2 class="text-2xl font-bold text-slate-100 tracking-tight">Catálogo de Librerías (12)</h2>
+              <p class="text-xs text-slate-400">Explora cada script interactivo, código fuente y resultado en consola</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- Search Input -->
+        <div class="relative w-full md:w-80">
+          <input type="text" id="searchInput" placeholder="Buscar por librería o concepto..." 
+                 class="w-full pl-10 pr-4 py-2.5 bg-slate-900/80 border border-slate-700/80 rounded-xl text-xs text-slate-200 placeholder-slate-500 focus:outline-none focus:border-emerald-500 focus:ring-1 focus:ring-emerald-500/50 transition-all">
+          <svg class="w-4 h-4 text-slate-500 absolute left-3.5 top-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path>
+          </svg>
+          <span id="resultsCounter" class="absolute right-3 top-2.5 text-[10px] font-mono text-slate-400 bg-slate-800 px-1.5 py-0.5 rounded">12/12</span>
+        </div>
+      </div>
+
+      <!-- Category Filter Tabs -->
+      <div class="flex flex-wrap items-center gap-2 text-xs" id="categoryTabs">
+        <button data-cat="all" class="filter-tab active px-3.5 py-1.5 rounded-lg font-medium transition-all bg-emerald-500/20 text-emerald-300 border border-emerald-500/40">
+          Todas (12)
+        </button>
+        <button data-cat="standard" class="filter-tab px-3.5 py-1.5 rounded-lg font-medium transition-all bg-slate-900/60 text-slate-400 hover:text-slate-200 border border-slate-800 hover:border-slate-700">
+          Biblioteca Estándar (4)
+        </button>
+        <button data-cat="data" class="filter-tab px-3.5 py-1.5 rounded-lg font-medium transition-all bg-slate-900/60 text-slate-400 hover:text-slate-200 border border-slate-800 hover:border-slate-700">
+          Ciencia de Datos & Visualización (3)
+        </button>
+        <button data-cat="pdf" class="filter-tab px-3.5 py-1.5 rounded-lg font-medium transition-all bg-slate-900/60 text-slate-400 hover:text-slate-200 border border-slate-800 hover:border-slate-700">
+          Generación PDF (2)
+        </button>
+        <button data-cat="web" class="filter-tab px-3.5 py-1.5 rounded-lg font-medium transition-all bg-slate-900/60 text-slate-400 hover:text-slate-200 border border-slate-800 hover:border-slate-700">
+          Web & APIs (2)
+        </button>
+        <button data-cat="ml" class="filter-tab px-3.5 py-1.5 rounded-lg font-medium transition-all bg-slate-900/60 text-slate-400 hover:text-slate-200 border border-slate-800 hover:border-slate-700">
+          Machine Learning (1)
+        </button>
+      </div>
+
+      <!-- LIBRARIES GRID (12 CARDS) -->
+      <div id="librariesGrid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 pt-2">
+
+        <!-- ================= CARD 01: MATH ================= -->
+        <div class="lib-card flex flex-col rounded-2xl bg-slate-900/70 border border-slate-800/80 hover:border-emerald-500/50 transition-all duration-300 hover:shadow-xl hover:shadow-emerald-950/20 group"
+             data-category="standard" data-tags="math trigonometria constantes combinatoria mcd mcm floats">
+          <div class="p-5 pb-3 flex-1 flex flex-col justify-between">
+            <div>
+              <div class="flex items-start justify-between gap-3">
+                <div class="flex items-center gap-3">
+                  <div class="w-10 h-10 rounded-xl bg-emerald-500/10 border border-emerald-500/20 flex items-center justify-center text-emerald-400 group-hover:scale-105 transition-transform">
+                    <!-- Calculator / Math Icon -->
+                    <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 7h6m0 10v-3m-3 3h.01M9 17h.01M9 14h.01M12 14h.01M15 11h.01M12 11h.01M9 11h.01M7 21h10a2 2 0 002-2V5a2 2 0 00-2-2H7a2 2 0 00-2 2v14a2 2 0 002 2z"></path>
+                    </svg>
+                  </div>
+                  <div>
+                    <div class="flex items-center gap-2">
+                      <h3 class="font-bold text-slate-100 text-lg group-hover:text-emerald-400 transition-colors">math</h3>
+                      <span class="px-2 py-0.5 text-[10px] font-mono bg-slate-800 text-slate-300 rounded border border-slate-700">#01</span>
+                    </div>
+                    <span class="text-[11px] font-medium text-emerald-400">Librería Estándar de Python</span>
+                  </div>
+                </div>
+                <span class="px-2.5 py-1 text-[11px] font-medium bg-emerald-500/10 text-emerald-300 border border-emerald-500/20 rounded-full">Nativa</span>
+              </div>
+
+              <p class="text-xs text-slate-400 mt-3 leading-relaxed">
+                Operaciones numéricas de alta precisión, constantes científicas (π, e, τ), geometría euclidiana, combinatoria y validaciones seguras de punto flotante con <code class="text-emerald-400">isclose()</code>.
+              </p>
+
+              <!-- Tags / Concepts -->
+              <div class="flex flex-wrap gap-1.5 mt-3.5">
+                <span class="px-2 py-0.5 text-[10px] bg-slate-800/80 text-slate-300 rounded-md">math.gcd / lcm</span>
+                <span class="px-2 py-0.5 text-[10px] bg-slate-800/80 text-slate-300 rounded-md">comb & perm</span>
+                <span class="px-2 py-0.5 text-[10px] bg-slate-800/80 text-slate-300 rounded-md">math.dist</span>
+                <span class="px-2 py-0.5 text-[10px] bg-slate-800/80 text-slate-300 rounded-md">isclose</span>
+              </div>
+            </div>
+
+            <!-- Command & File Link -->
+            <div class="mt-4 pt-3 border-t border-slate-800 flex items-center justify-between text-xs">
+              <span class="font-mono text-[11px] text-slate-400">01_math_example.py</span>
+              <button onclick="copyCommand('python 01_math_example.py', this)" class="inline-flex items-center gap-1 text-[11px] font-mono text-emerald-400 hover:text-emerald-300 bg-emerald-500/10 px-2 py-1 rounded border border-emerald-500/20 hover:border-emerald-500/40">
+                <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 16H6a2 2 0 01-2-2V6a2 2 0 012-2h8a2 2 0 012 2v2m-6 12h8a2 2 0 002-2v-8a2 2 0 00-2-2h-8a2 2 0 00-2 2v8a2 2 0 002 2z"></path></svg>
+                <span>Run</span>
+              </button>
+            </div>
+          </div>
+
+          <!-- Interactive Code Box / Preview Tabs -->
+          <div class="border-t border-slate-800 bg-slate-950/70 rounded-b-2xl overflow-hidden">
+            <div class="flex items-center justify-between px-4 py-2 border-b border-slate-800/80 bg-slate-900/50 text-[11px]">
+              <div class="flex items-center gap-2">
+                <button onclick="switchTab(this, 'code-01', 'out-01')" class="tab-btn font-mono font-medium text-emerald-400 pb-0.5 border-b-2 border-emerald-400">Código</button>
+                <button onclick="switchTab(this, 'out-01', 'code-01')" class="tab-btn font-mono font-medium text-slate-400 hover:text-slate-200 pb-0.5 border-b-2 border-transparent">Salida</button>
+              </div>
+              <button onclick="copyCardSnippet('snippet-01', this)" class="text-slate-400 hover:text-emerald-400 transition-colors p-1" title="Copiar snippet">
+                <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 16H6a2 2 0 01-2-2V6a2 2 0 012-2h8a2 2 0 012 2v2m-6 12h8a2 2 0 002-2v-8a2 2 0 00-2-2h-8a2 2 0 00-2 2v8a2 2 0 002 2z"></path></svg>
+              </button>
+            </div>
+
+            <!-- Code Snippet -->
+            <pre id="code-01" class="tab-pane p-4 text-[11px] leading-relaxed font-mono overflow-x-auto text-slate-300 max-h-48 scrollbar-thin"><code id="snippet-01"><span class="token-kw">import</span> math
+
+<span class="token-comment"># MCD, MCM y combinatoria</span>
+a, b = <span class="token-num">48</span>, <span class="token-num">180</span>
+mcd = math.<span class="token-fn">gcd</span>(a, b)  <span class="token-comment"># 12</span>
+mcm = math.<span class="token-fn">lcm</span>(a, b)  <span class="token-comment"># 720</span>
+formas = math.<span class="token-fn">comb</span>(<span class="token-num">10</span>, <span class="token-num">3</span>)  <span class="token-comment"># 120 combinaciones</span>
+
+<span class="token-comment"># Distancia euclidiana 3D & flotantes</span>
+dist = math.<span class="token-fn">dist</span>((<span class="token-num">1.0</span>, <span class="token-num">2.0</span>, <span class="token-num">5.0</span>), (<span class="token-num">4.0</span>, <span class="token-num">6.0</span>, <span class="token-num">5.0</span>))
+es_igual = math.<span class="token-fn">isclose</span>(<span class="token-num">0.1</span> + <span class="token-num">0.2</span>, <span class="token-num">0.3</span>)  <span class="token-comment"># True seguro</span></code></pre>
+
+            <!-- Terminal Output -->
+            <pre id="out-01" class="tab-pane hidden p-4 text-[11px] leading-relaxed font-mono overflow-x-auto text-emerald-400/90 max-h-48 scrollbar-thin bg-black/40"><code>MCD (math.gcd)      : 12
+MCM (math.lcm)      : 720
+Combinaciones C(10,3): 120 formas
+Distancia 3D        : 5.0
+0.1 + 0.2 == 0.3    : False (0.30000000000000004)
+math.isclose(...)   : True [OK]</code></pre>
+          </div>
+        </div>
+
+        <!-- ================= CARD 02: RANDOM ================= -->
+        <div class="lib-card flex flex-col rounded-2xl bg-slate-900/70 border border-slate-800/80 hover:border-emerald-500/50 transition-all duration-300 hover:shadow-xl hover:shadow-emerald-950/20 group"
+             data-category="standard" data-tags="random aleatorio muestreo probabilidad gaussian seed dados password">
+          <div class="p-5 pb-3 flex-1 flex flex-col justify-between">
+            <div>
+              <div class="flex items-start justify-between gap-3">
+                <div class="flex items-center gap-3">
+                  <div class="w-10 h-10 rounded-xl bg-emerald-500/10 border border-emerald-500/20 flex items-center justify-center text-emerald-400 group-hover:scale-105 transition-transform">
+                    <!-- Dice / Random Icon -->
+                    <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14.828 14.828a4 4 0 01-5.656 0M9 10h.01M15 10h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+                    </svg>
+                  </div>
+                  <div>
+                    <div class="flex items-center gap-2">
+                      <h3 class="font-bold text-slate-100 text-lg group-hover:text-emerald-400 transition-colors">random</h3>
+                      <span class="px-2 py-0.5 text-[10px] font-mono bg-slate-800 text-slate-300 rounded border border-slate-700">#02</span>
+                    </div>
+                    <span class="text-[11px] font-medium text-emerald-400">Librería Estándar de Python</span>
+                  </div>
+                </div>
+                <span class="px-2.5 py-1 text-[11px] font-medium bg-emerald-500/10 text-emerald-300 border border-emerald-500/20 rounded-full">Nativa</span>
+              </div>
+
+              <p class="text-xs text-slate-400 mt-3 leading-relaxed">
+                Generación pseudoaleatoria para simulaciones estadísticas, selecciones ponderadas con pesos, mezclas barajadas sin reemplazo y generador de contraseñas robustas.
+              </p>
+
+              <div class="flex flex-wrap gap-1.5 mt-3.5">
+                <span class="px-2 py-0.5 text-[10px] bg-slate-800/80 text-slate-300 rounded-md">random.choices</span>
+                <span class="px-2 py-0.5 text-[10px] bg-slate-800/80 text-slate-300 rounded-md">shuffle & sample</span>
+                <span class="px-2 py-0.5 text-[10px] bg-slate-800/80 text-slate-300 rounded-md">gauss</span>
+                <span class="px-2 py-0.5 text-[10px] bg-slate-800/80 text-slate-300 rounded-md">seed()</span>
+              </div>
+            </div>
+
+            <div class="mt-4 pt-3 border-t border-slate-800 flex items-center justify-between text-xs">
+              <span class="font-mono text-[11px] text-slate-400">02_random_example.py</span>
+              <button onclick="copyCommand('python 02_random_example.py', this)" class="inline-flex items-center gap-1 text-[11px] font-mono text-emerald-400 hover:text-emerald-300 bg-emerald-500/10 px-2 py-1 rounded border border-emerald-500/20 hover:border-emerald-500/40">
+                <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 16H6a2 2 0 01-2-2V6a2 2 0 012-2h8a2 2 0 012 2v2m-6 12h8a2 2 0 002-2v-8a2 2 0 00-2-2h-8a2 2 0 00-2 2v8a2 2 0 002 2z"></path></svg>
+                <span>Run</span>
+              </button>
+            </div>
+          </div>
+
+          <div class="border-t border-slate-800 bg-slate-950/70 rounded-b-2xl overflow-hidden">
+            <div class="flex items-center justify-between px-4 py-2 border-b border-slate-800/80 bg-slate-900/50 text-[11px]">
+              <div class="flex items-center gap-2">
+                <button onclick="switchTab(this, 'code-02', 'out-02')" class="tab-btn font-mono font-medium text-emerald-400 pb-0.5 border-b-2 border-emerald-400">Código</button>
+                <button onclick="switchTab(this, 'out-02', 'code-02')" class="tab-btn font-mono font-medium text-slate-400 hover:text-slate-200 pb-0.5 border-b-2 border-transparent">Salida</button>
+              </div>
+              <button onclick="copyCardSnippet('snippet-02', this)" class="text-slate-400 hover:text-emerald-400 transition-colors p-1" title="Copiar snippet">
+                <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 16H6a2 2 0 01-2-2V6a2 2 0 012-2h8a2 2 0 012 2v2m-6 12h8a2 2 0 002-2v-8a2 2 0 00-2-2h-8a2 2 0 00-2 2v8a2 2 0 002 2z"></path></svg>
+              </button>
+            </div>
+
+            <pre id="code-02" class="tab-pane p-4 text-[11px] leading-relaxed font-mono overflow-x-auto text-slate-300 max-h-48 scrollbar-thin"><code id="snippet-02"><span class="token-kw">import</span> random
+
+<span class="token-comment"># Selección ponderada (60% éxito, 30% advertencia, 10% error)</span>
+estados = [<span class="token-str">"OK"</span>, <span class="token-str">"WARN"</span>, <span class="token-str">"ERR"</span>]
+pesos = [<span class="token-num">0.60</span>, <span class="token-num">0.30</span>, <span class="token-num">0.10</span>]
+muestras = random.<span class="token-fn">choices</span>(estados, weights=pesos, k=<span class="token-num">5</span>)
+
+<span class="token-comment"># Muestreo sin reemplazo y distribución normal</span>
+seleccion = random.<span class="token-fn">sample</span>(range(<span class="token-num">1</span>, <span class="token-num">50</span>), k=<span class="token-num">6</span>)
+altura = random.<span class="token-fn">gauss</span>(mu=<span class="token-num">175</span>, sigma=<span class="token-num">7</span>)</code></pre>
+
+            <pre id="out-02" class="tab-pane hidden p-4 text-[11px] leading-relaxed font-mono overflow-x-auto text-emerald-400/90 max-h-48 scrollbar-thin bg-black/40"><code>Muestras choices (k=5): ['OK', 'OK', 'WARN', 'OK', 'ERR']
+Sample sin reemplazo  : [14, 38, 2, 45, 29, 7]
+Gauss (mu=175, sig=7) : 173.84 cm
+Password generado     : K9#mQ$x2!w [OK]</code></pre>
+          </div>
+        </div>
+
+        <!-- ================= CARD 03: DATETIME ================= -->
+        <div class="lib-card flex flex-col rounded-2xl bg-slate-900/70 border border-slate-800/80 hover:border-emerald-500/50 transition-all duration-300 hover:shadow-xl hover:shadow-emerald-950/20 group"
+             data-category="standard" data-tags="datetime fechas horas timedelta timezone strftime strptime">
+          <div class="p-5 pb-3 flex-1 flex flex-col justify-between">
+            <div>
+              <div class="flex items-start justify-between gap-3">
+                <div class="flex items-center gap-3">
+                  <div class="w-10 h-10 rounded-xl bg-emerald-500/10 border border-emerald-500/20 flex items-center justify-center text-emerald-400 group-hover:scale-105 transition-transform">
+                    <!-- Calendar / Clock Icon -->
+                    <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"></path>
+                    </svg>
+                  </div>
+                  <div>
+                    <div class="flex items-center gap-2">
+                      <h3 class="font-bold text-slate-100 text-lg group-hover:text-emerald-400 transition-colors">datetime</h3>
+                      <span class="px-2 py-0.5 text-[10px] font-mono bg-slate-800 text-slate-300 rounded border border-slate-700">#03</span>
+                    </div>
+                    <span class="text-[11px] font-medium text-emerald-400">Librería Estándar de Python</span>
+                  </div>
+                </div>
+                <span class="px-2.5 py-1 text-[11px] font-medium bg-emerald-500/10 text-emerald-300 border border-emerald-500/20 rounded-full">Nativa</span>
+              </div>
+
+              <p class="text-xs text-slate-400 mt-3 leading-relaxed">
+                Gestión integral de fechas y tiempos: cálculo de diferencias con <code class="text-emerald-400">timedelta</code>, formateo ISO/local con <code class="text-emerald-400">strftime</code>, parseo de texto y zonas horarias UTC.
+              </p>
+
+              <div class="flex flex-wrap gap-1.5 mt-3.5">
+                <span class="px-2 py-0.5 text-[10px] bg-slate-800/80 text-slate-300 rounded-md">strftime / strptime</span>
+                <span class="px-2 py-0.5 text-[10px] bg-slate-800/80 text-slate-300 rounded-md">timedelta</span>
+                <span class="px-2 py-0.5 text-[10px] bg-slate-800/80 text-slate-300 rounded-md">timezone.utc</span>
+                <span class="px-2 py-0.5 text-[10px] bg-slate-800/80 text-slate-300 rounded-md">ISO 8601</span>
+              </div>
+            </div>
+
+            <div class="mt-4 pt-3 border-t border-slate-800 flex items-center justify-between text-xs">
+              <span class="font-mono text-[11px] text-slate-400">03_datetime_example.py</span>
+              <button onclick="copyCommand('python 03_datetime_example.py', this)" class="inline-flex items-center gap-1 text-[11px] font-mono text-emerald-400 hover:text-emerald-300 bg-emerald-500/10 px-2 py-1 rounded border border-emerald-500/20 hover:border-emerald-500/40">
+                <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 16H6a2 2 0 01-2-2V6a2 2 0 012-2h8a2 2 0 012 2v2m-6 12h8a2 2 0 002-2v-8a2 2 0 00-2-2h-8a2 2 0 00-2 2v8a2 2 0 002 2z"></path></svg>
+                <span>Run</span>
+              </button>
+            </div>
+          </div>
+
+          <div class="border-t border-slate-800 bg-slate-950/70 rounded-b-2xl overflow-hidden">
+            <div class="flex items-center justify-between px-4 py-2 border-b border-slate-800/80 bg-slate-900/50 text-[11px]">
+              <div class="flex items-center gap-2">
+                <button onclick="switchTab(this, 'code-03', 'out-03')" class="tab-btn font-mono font-medium text-emerald-400 pb-0.5 border-b-2 border-emerald-400">Código</button>
+                <button onclick="switchTab(this, 'out-03', 'code-03')" class="tab-btn font-mono font-medium text-slate-400 hover:text-slate-200 pb-0.5 border-b-2 border-transparent">Salida</button>
+              </div>
+              <button onclick="copyCardSnippet('snippet-03', this)" class="text-slate-400 hover:text-emerald-400 transition-colors p-1" title="Copiar snippet">
+                <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 16H6a2 2 0 01-2-2V6a2 2 0 012-2h8a2 2 0 012 2v2m-6 12h8a2 2 0 002-2v-8a2 2 0 00-2-2h-8a2 2 0 00-2 2v8a2 2 0 002 2z"></path></svg>
+              </button>
+            </div>
+
+            <pre id="code-03" class="tab-pane p-4 text-[11px] leading-relaxed font-mono overflow-x-auto text-slate-300 max-h-48 scrollbar-thin"><code id="snippet-03"><span class="token-kw">from</span> datetime <span class="token-kw">import</span> datetime, timedelta, timezone
+
+<span class="token-comment"># Fecha actual en UTC y cálculo de plazos</span>
+ahora = datetime.<span class="token-fn">now</span>(timezone.utc)
+plazo = ahora + <span class="token-fn">timedelta</span>(days=<span class="token-num">15</span>, hours=<span class="token-num">4</span>)
+
+<span class="token-comment"># Parseo y formateo semántico</span>
+formato_iso = ahora.<span class="token-fn">strftime</span>(<span class="token-str">"%Y-%m-%dT%H:%M:%SZ"</span>)
+evento = datetime.<span class="token-fn">strptime</span>(<span class="token-str">"2026-12-31"</span>, <span class="token-str">"%Y-%m-%d"</span>)
+restante = evento - ahora.<span class="token-fn">replace</span>(tzinfo=<span class="token-builtin">None</span>)</code></pre>
+
+            <pre id="out-03" class="tab-pane hidden p-4 text-[11px] leading-relaxed font-mono overflow-x-auto text-emerald-400/90 max-h-48 scrollbar-thin bg-black/40"><code>Fecha y hora UTC : 2026-10-15T22:55:00Z
+Plazo +15 días   : 2026-10-30 02:55:00 UTC
+Formato ISO 8601 : 2026-10-15T22:55:00Z
+Días para fin año: 76 días restantes [OK]</code></pre>
+          </div>
+        </div>
+
+        <!-- ================= CARD 04: CSV ================= -->
+        <div class="lib-card flex flex-col rounded-2xl bg-slate-900/70 border border-slate-800/80 hover:border-emerald-500/50 transition-all duration-300 hover:shadow-xl hover:shadow-emerald-950/20 group"
+             data-category="standard" data-tags="csv tablas datos archivos dictwriter dictreader delimitadores">
+          <div class="p-5 pb-3 flex-1 flex flex-col justify-between">
+            <div>
+              <div class="flex items-start justify-between gap-3">
+                <div class="flex items-center gap-3">
+                  <div class="w-10 h-10 rounded-xl bg-emerald-500/10 border border-emerald-500/20 flex items-center justify-center text-emerald-400 group-hover:scale-105 transition-transform">
+                    <!-- File / CSV Table Icon -->
+                    <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 10h18M3 14h18m-9-4v8m-7 0h14a2 2 0 002-2V6a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"></path>
+                    </svg>
+                  </div>
+                  <div>
+                    <div class="flex items-center gap-2">
+                      <h3 class="font-bold text-slate-100 text-lg group-hover:text-emerald-400 transition-colors">csv</h3>
+                      <span class="px-2 py-0.5 text-[10px] font-mono bg-slate-800 text-slate-300 rounded border border-slate-700">#04</span>
+                    </div>
+                    <span class="text-[11px] font-medium text-emerald-400">Librería Estándar de Python</span>
+                  </div>
+                </div>
+                <span class="px-2.5 py-1 text-[11px] font-medium bg-emerald-500/10 text-emerald-300 border border-emerald-500/20 rounded-full">Nativa</span>
+              </div>
+
+              <p class="text-xs text-slate-400 mt-3 leading-relaxed">
+                Lectura y escritura de datos tabulares estructurados. Demuestra el uso moderno de <code class="text-emerald-400">DictWriter</code> y <code class="text-emerald-400">DictReader</code> con agregaciones de ventas por departamento.
+              </p>
+
+              <div class="flex flex-wrap gap-1.5 mt-3.5">
+                <span class="px-2 py-0.5 text-[10px] bg-slate-800/80 text-slate-300 rounded-md">DictWriter & DictReader</span>
+                <span class="px-2 py-0.5 text-[10px] bg-slate-800/80 text-slate-300 rounded-md">csv.writer / reader</span>
+                <span class="px-2 py-0.5 text-[10px] bg-slate-800/80 text-slate-300 rounded-md">UTF-8 & Delimiters</span>
+              </div>
+            </div>
+
+            <div class="mt-4 pt-3 border-t border-slate-800 flex items-center justify-between text-xs">
+              <span class="font-mono text-[11px] text-slate-400">04_csv_example.py</span>
+              <button onclick="copyCommand('python 04_csv_example.py', this)" class="inline-flex items-center gap-1 text-[11px] font-mono text-emerald-400 hover:text-emerald-300 bg-emerald-500/10 px-2 py-1 rounded border border-emerald-500/20 hover:border-emerald-500/40">
+                <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 16H6a2 2 0 01-2-2V6a2 2 0 012-2h8a2 2 0 012 2v2m-6 12h8a2 2 0 002-2v-8a2 2 0 00-2-2h-8a2 2 0 00-2 2v8a2 2 0 002 2z"></path></svg>
+                <span>Run</span>
+              </button>
+            </div>
+          </div>
+
+          <div class="border-t border-slate-800 bg-slate-950/70 rounded-b-2xl overflow-hidden">
+            <div class="flex items-center justify-between px-4 py-2 border-b border-slate-800/80 bg-slate-900/50 text-[11px]">
+              <div class="flex items-center gap-2">
+                <button onclick="switchTab(this, 'code-04', 'out-04')" class="tab-btn font-mono font-medium text-emerald-400 pb-0.5 border-b-2 border-emerald-400">Código</button>
+                <button onclick="switchTab(this, 'out-04', 'code-04')" class="tab-btn font-mono font-medium text-slate-400 hover:text-slate-200 pb-0.5 border-b-2 border-transparent">Salida</button>
+              </div>
+              <button onclick="copyCardSnippet('snippet-04', this)" class="text-slate-400 hover:text-emerald-400 transition-colors p-1" title="Copiar snippet">
+                <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 16H6a2 2 0 01-2-2V6a2 2 0 012-2h8a2 2 0 012 2v2m-6 12h8a2 2 0 002-2v-8a2 2 0 00-2-2h-8a2 2 0 00-2 2v8a2 2 0 002 2z"></path></svg>
+              </button>
+            </div>
+
+            <pre id="code-04" class="tab-pane p-4 text-[11px] leading-relaxed font-mono overflow-x-auto text-slate-300 max-h-48 scrollbar-thin"><code id="snippet-04"><span class="token-kw">import</span> csv
+
+campos = [<span class="token-str">"id"</span>, <span class="token-str">"producto"</span>, <span class="token-str">"cantidad"</span>, <span class="token-str">"precio"</span>]
+datos = [{<span class="token-str">"id"</span>: <span class="token-num">1</span>, <span class="token-str">"producto"</span>: <span class="token-str">"Laptop"</span>, <span class="token-str">"cantidad"</span>: <span class="token-num">3</span>, <span class="token-str">"precio"</span>: <span class="token-num">1200.0</span>}]
+
+<span class="token-comment"># Escritura estructurada con DictWriter</span>
+<span class="token-kw">with</span> <span class="token-builtin">open</span>(<span class="token-str">"ventas.csv"</span>, <span class="token-str">"w"</span>, newline=<span class="token-str">""</span>, encoding=<span class="token-str">"utf-8"</span>) <span class="token-kw">as</span> f:
+    writer = csv.<span class="token-fn">DictWriter</span>(f, fieldnames=campos)
+    writer.<span class="token-fn">writeheader</span>()
+    writer.<span class="token-fn">writerows</span>(datos)</code></pre>
+
+            <pre id="out-04" class="tab-pane hidden p-4 text-[11px] leading-relaxed font-mono overflow-x-auto text-emerald-400/90 max-h-48 scrollbar-thin bg-black/40"><code>Archivo 'datos_basicos.csv' generado.
+Leídas 4 filas con csv.reader.
+Archivo 'ventas.csv' procesado con DictReader.
+Ingresos Totales Calculados: $3,600.00 USD [OK]</code></pre>
+          </div>
+        </div>
+
+        <!-- ================= CARD 05: FPDF (fpdf2) ================= -->
+        <div class="lib-card flex flex-col rounded-2xl bg-slate-900/70 border border-slate-800/80 hover:border-cyan-500/50 transition-all duration-300 hover:shadow-xl hover:shadow-cyan-950/20 group"
+             data-category="pdf" data-tags="fpdf fpdf2 pdf documentos reporte tablas paginacion">
+          <div class="p-5 pb-3 flex-1 flex flex-col justify-between">
+            <div>
+              <div class="flex items-start justify-between gap-3">
+                <div class="flex items-center gap-3">
+                  <div class="w-10 h-10 rounded-xl bg-cyan-500/10 border border-cyan-500/20 flex items-center justify-center text-cyan-400 group-hover:scale-105 transition-transform">
+                    <!-- Document / PDF Icon -->
+                    <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 10v6m0 0l-3-3m3 3l3-3m2 8H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"></path>
+                    </svg>
+                  </div>
+                  <div>
+                    <div class="flex items-center gap-2">
+                      <h3 class="font-bold text-slate-100 text-lg group-hover:text-cyan-400 transition-colors">fpdf (fpdf2)</h3>
+                      <span class="px-2 py-0.5 text-[10px] font-mono bg-slate-800 text-slate-300 rounded border border-slate-700">#05</span>
+                    </div>
+                    <span class="text-[11px] font-medium text-cyan-400">pip install fpdf2</span>
+                  </div>
+                </div>
+                <span class="px-2.5 py-1 text-[11px] font-medium bg-cyan-500/10 text-cyan-300 border border-cyan-500/20 rounded-full">Externa</span>
+              </div>
+
+              <p class="text-xs text-slate-400 mt-3 leading-relaxed">
+                Generación rápida y vectorial de archivos PDF. Soporta configuración de fuentes tipográficas, celdas de alineación, encabezados, autores y exportación directa a archivo <code class="text-cyan-400">.pdf</code>.
+              </p>
+
+              <div class="flex flex-wrap gap-1.5 mt-3.5">
+                <span class="px-2 py-0.5 text-[10px] bg-slate-800/80 text-slate-300 rounded-md">FPDF()</span>
+                <span class="px-2 py-0.5 text-[10px] bg-slate-800/80 text-slate-300 rounded-md">add_page & set_font</span>
+                <span class="px-2 py-0.5 text-[10px] bg-slate-800/80 text-slate-300 rounded-md">cell / multi_cell</span>
+                <span class="px-2 py-0.5 text-[10px] bg-slate-800/80 text-slate-300 rounded-md">output(.pdf)</span>
+              </div>
+            </div>
+
+            <div class="mt-4 pt-3 border-t border-slate-800 flex items-center justify-between text-xs">
+              <span class="font-mono text-[11px] text-slate-400">05_fpdf_example.py</span>
+              <button onclick="copyCommand('python 05_fpdf_example.py', this)" class="inline-flex items-center gap-1 text-[11px] font-mono text-cyan-400 hover:text-cyan-300 bg-cyan-500/10 px-2 py-1 rounded border border-cyan-500/20 hover:border-cyan-500/40">
+                <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 16H6a2 2 0 01-2-2V6a2 2 0 012-2h8a2 2 0 012 2v2m-6 12h8a2 2 0 002-2v-8a2 2 0 00-2-2h-8a2 2 0 00-2 2v8a2 2 0 002 2z"></path></svg>
+                <span>Run</span>
+              </button>
+            </div>
+          </div>
+
+          <div class="border-t border-slate-800 bg-slate-950/70 rounded-b-2xl overflow-hidden">
+            <div class="flex items-center justify-between px-4 py-2 border-b border-slate-800/80 bg-slate-900/50 text-[11px]">
+              <div class="flex items-center gap-2">
+                <button onclick="switchTab(this, 'code-05', 'out-05')" class="tab-btn font-mono font-medium text-cyan-400 pb-0.5 border-b-2 border-cyan-400">Código</button>
+                <button onclick="switchTab(this, 'out-05', 'code-05')" class="tab-btn font-mono font-medium text-slate-400 hover:text-slate-200 pb-0.5 border-b-2 border-transparent">Salida</button>
+              </div>
+              <button onclick="copyCardSnippet('snippet-05', this)" class="text-slate-400 hover:text-cyan-400 transition-colors p-1" title="Copiar snippet">
+                <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 16H6a2 2 0 01-2-2V6a2 2 0 012-2h8a2 2 0 012 2v2m-6 12h8a2 2 0 002-2v-8a2 2 0 00-2-2h-8a2 2 0 00-2 2v8a2 2 0 002 2z"></path></svg>
+              </button>
+            </div>
+
+            <pre id="code-05" class="tab-pane p-4 text-[11px] leading-relaxed font-mono overflow-x-auto text-slate-300 max-h-48 scrollbar-thin"><code id="snippet-05"><span class="token-kw">from</span> fpdf <span class="token-kw">import</span> FPDF
+
+pdf = <span class="token-fn">FPDF</span>()
+pdf.<span class="token-fn">add_page</span>()
+
+<span class="token-comment"># Título con Helvetica negrita</span>
+pdf.<span class="token-fn">set_font</span>(<span class="token-str">"Helvetica"</span>, <span class="token-str">"B"</span>, <span class="token-num">18</span>)
+pdf.<span class="token-fn">cell</span>(<span class="token-num">0</span>, <span class="token-num">15</span>, <span class="token-str">"Reporte Académico Unidad 2"</span>, new_x=<span class="token-str">"LMARGIN"</span>, new_y=<span class="token-str">"NEXT"</span>, align=<span class="token-str">"C"</span>)
+
+<span class="token-comment"># Cuerpo de texto justificado y guardado</span>
+pdf.<span class="token-fn">set_font</span>(<span class="token-str">"Helvetica"</span>, size=<span class="token-num">11</span>)
+pdf.<span class="token-fn">multi_cell</span>(<span class="token-num">0</span>, <span class="token-num">8</span>, <span class="token-str">"Documento generado con FPDF2."</span>)
+pdf.<span class="token-fn">output</span>(<span class="token-str">"mi_documento_fpdf.pdf"</span>)</code></pre>
+
+            <pre id="out-05" class="tab-pane hidden p-4 text-[11px] leading-relaxed font-mono overflow-x-auto text-cyan-400/90 max-h-48 scrollbar-thin bg-black/40"><code>=== EJEMPLO INTERACTIVO: FPDF ===
+Título: Reporte Académico Unidad 2
+Autor: Estudiante Python
+¡PDF creado exitosamente como 'mi_documento_fpdf.pdf'! [OK]</code></pre>
+          </div>
+        </div>
+
+        <!-- ================= CARD 06: REPORTLAB ================= -->
+        <div class="lib-card flex flex-col rounded-2xl bg-slate-900/70 border border-slate-800/80 hover:border-cyan-500/50 transition-all duration-300 hover:shadow-xl hover:shadow-cyan-950/20 group"
+             data-category="pdf" data-tags="reportlab platypus pdf tablas corporativo simpledoctemplate canvas estilos">
+          <div class="p-5 pb-3 flex-1 flex flex-col justify-between">
+            <div>
+              <div class="flex items-start justify-between gap-3">
+                <div class="flex items-center gap-3">
+                  <div class="w-10 h-10 rounded-xl bg-cyan-500/10 border border-cyan-500/20 flex items-center justify-center text-cyan-400 group-hover:scale-105 transition-transform">
+                    <!-- Flow / Platypus ReportLab Icon -->
+                    <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 17v-2m3 2v-4m3 4v-6m2 10H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"></path>
+                    </svg>
+                  </div>
+                  <div>
+                    <div class="flex items-center gap-2">
+                      <h3 class="font-bold text-slate-100 text-lg group-hover:text-cyan-400 transition-colors">reportlab</h3>
+                      <span class="px-2 py-0.5 text-[10px] font-mono bg-slate-800 text-slate-300 rounded border border-slate-700">#06</span>
+                    </div>
+                    <span class="text-[11px] font-medium text-cyan-400">pip install reportlab</span>
+                  </div>
+                </div>
+                <span class="px-2.5 py-1 text-[11px] font-medium bg-cyan-500/10 text-cyan-300 border border-cyan-500/20 rounded-full">Externa</span>
+              </div>
+
+              <p class="text-xs text-slate-400 mt-3 leading-relaxed">
+                Arquitectura de documentos empresariales con motor Platypus (<code class="text-cyan-400">SimpleDocTemplate</code>), tablas con diseño de rejilla avanzada y pie de página de dos pasadas con <code class="text-cyan-400">NumberedCanvas</code>.
+              </p>
+
+              <div class="flex flex-wrap gap-1.5 mt-3.5">
+                <span class="px-2 py-0.5 text-[10px] bg-slate-800/80 text-slate-300 rounded-md">SimpleDocTemplate</span>
+                <span class="px-2 py-0.5 text-[10px] bg-slate-800/80 text-slate-300 rounded-md">Table & TableStyle</span>
+                <span class="px-2 py-0.5 text-[10px] bg-slate-800/80 text-slate-300 rounded-md">NumberedCanvas</span>
+                <span class="px-2 py-0.5 text-[10px] bg-slate-800/80 text-slate-300 rounded-md">Platypus Flow</span>
+              </div>
+            </div>
+
+            <div class="mt-4 pt-3 border-t border-slate-800 flex items-center justify-between text-xs">
+              <span class="font-mono text-[11px] text-slate-400">06_reportlab_example.py</span>
+              <button onclick="copyCommand('python 06_reportlab_example.py', this)" class="inline-flex items-center gap-1 text-[11px] font-mono text-cyan-400 hover:text-cyan-300 bg-cyan-500/10 px-2 py-1 rounded border border-cyan-500/20 hover:border-cyan-500/40">
+                <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 16H6a2 2 0 01-2-2V6a2 2 0 012-2h8a2 2 0 012 2v2m-6 12h8a2 2 0 002-2v-8a2 2 0 00-2-2h-8a2 2 0 00-2 2v8a2 2 0 002 2z"></path></svg>
+                <span>Run</span>
+              </button>
+            </div>
+          </div>
+
+          <div class="border-t border-slate-800 bg-slate-950/70 rounded-b-2xl overflow-hidden">
+            <div class="flex items-center justify-between px-4 py-2 border-b border-slate-800/80 bg-slate-900/50 text-[11px]">
+              <div class="flex items-center gap-2">
+                <button onclick="switchTab(this, 'code-06', 'out-06')" class="tab-btn font-mono font-medium text-cyan-400 pb-0.5 border-b-2 border-cyan-400">Código</button>
+                <button onclick="switchTab(this, 'out-06', 'code-06')" class="tab-btn font-mono font-medium text-slate-400 hover:text-slate-200 pb-0.5 border-b-2 border-transparent">Salida</button>
+              </div>
+              <button onclick="copyCardSnippet('snippet-06', this)" class="text-slate-400 hover:text-cyan-400 transition-colors p-1" title="Copiar snippet">
+                <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 16H6a2 2 0 01-2-2V6a2 2 0 012-2h8a2 2 0 012 2v2m-6 12h8a2 2 0 002-2v-8a2 2 0 00-2-2h-8a2 2 0 00-2 2v8a2 2 0 002 2z"></path></svg>
+              </button>
+            </div>
+
+            <pre id="code-06" class="tab-pane p-4 text-[11px] leading-relaxed font-mono overflow-x-auto text-slate-300 max-h-48 scrollbar-thin"><code id="snippet-06"><span class="token-kw">from</span> reportlab.platypus <span class="token-kw">import</span> SimpleDocTemplate, Paragraph, Table, TableStyle
+<span class="token-kw">from</span> reportlab.lib <span class="token-kw">import</span> colors
+
+doc = <span class="token-fn">SimpleDocTemplate</span>(<span class="token-str">"reporte_reportlab.pdf"</span>)
+estilo_tabla = <span class="token-fn">TableStyle</span>([
+    (<span class="token-str">"BACKGROUND"</span>, (<span class="token-num">0</span>, <span class="token-num">0</span>), (-<span class="token-num">1</span>, <span class="token-num">0</span>), colors.HexColor(<span class="token-str">"#1A365D"</span>)),
+    (<span class="token-str">"TEXTCOLOR"</span>, (<span class="token-num">0</span>, <span class="token-num">0</span>), (-<span class="token-num">1</span>, <span class="token-num">0</span>), colors.white),
+    (<span class="token-str">"GRID"</span>, (<span class="token-num">0</span>, <span class="token-num">0</span>), (-<span class="token-num">1</span>, -<span class="token-num">1</span>), <span class="token-num">0.5</span>, colors.HexColor(<span class="token-str">"#CBD5E1"</span>))
+])
+doc.<span class="token-fn">build</span>(elementos, canvasmaker=NumberedCanvas)</code></pre>
+
+            <pre id="out-06" class="tab-pane hidden p-4 text-[11px] leading-relaxed font-mono overflow-x-auto text-cyan-400/90 max-h-48 scrollbar-thin bg-black/40"><code>Construyendo documento empresarial con Platypus...
+Aplicando estilos tipográficos y NumberedCanvas...
+Archivo 'reporte_reportlab.pdf' generado con éxito.
+Páginas calculadas: 2 de 2 [OK]</code></pre>
+          </div>
+        </div>
+
+        <!-- ================= CARD 07: NUMPY ================= -->
+        <div class="lib-card flex flex-col rounded-2xl bg-slate-900/70 border border-slate-800/80 hover:border-emerald-500/50 transition-all duration-300 hover:shadow-xl hover:shadow-emerald-950/20 group"
+             data-category="data" data-tags="numpy matrices vectores calculo algebra ndarray broadcasting">
+          <div class="p-5 pb-3 flex-1 flex flex-col justify-between">
+            <div>
+              <div class="flex items-start justify-between gap-3">
+                <div class="flex items-center gap-3">
+                  <div class="w-10 h-10 rounded-xl bg-emerald-500/10 border border-emerald-500/20 flex items-center justify-center text-emerald-400 group-hover:scale-105 transition-transform">
+                    <!-- Matrix / Vector Icon -->
+                    <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 7v10c0 2 1 3 3 3h10c2 0 3-1 3-3V7c0-2-1-3-3-3H7C5 4 4 5 4 7zM9 9h6M9 15h6"></path>
+                    </svg>
+                  </div>
+                  <div>
+                    <div class="flex items-center gap-2">
+                      <h3 class="font-bold text-slate-100 text-lg group-hover:text-emerald-400 transition-colors">NumPy</h3>
+                      <span class="px-2 py-0.5 text-[10px] font-mono bg-slate-800 text-slate-300 rounded border border-slate-700">#07</span>
+                    </div>
+                    <span class="text-[11px] font-medium text-emerald-400">pip install numpy</span>
+                  </div>
+                </div>
+                <span class="px-2.5 py-1 text-[11px] font-medium bg-emerald-500/10 text-emerald-300 border border-emerald-500/20 rounded-full">Externa</span>
+              </div>
+
+              <p class="text-xs text-slate-400 mt-3 leading-relaxed">
+                Computación científica y vectorial: creación de <code class="text-emerald-400">ndarrays</code> multidimensionales, segmentación con máscaras booleanas, álgebra lineal y broadcasting sin bucles.
+              </p>
+
+              <div class="flex flex-wrap gap-1.5 mt-3.5">
+                <span class="px-2 py-0.5 text-[10px] bg-slate-800/80 text-slate-300 rounded-md">ndarrays & slicing</span>
+                <span class="px-2 py-0.5 text-[10px] bg-slate-800/80 text-slate-300 rounded-md">np.where & máscaras</span>
+                <span class="px-2 py-0.5 text-[10px] bg-slate-800/80 text-slate-300 rounded-md">Broadcasting</span>
+                <span class="px-2 py-0.5 text-[10px] bg-slate-800/80 text-slate-300 rounded-md">Álgebra: @, det</span>
+              </div>
+            </div>
+
+            <div class="mt-4 pt-3 border-t border-slate-800 flex items-center justify-between text-xs">
+              <span class="font-mono text-[11px] text-slate-400">07_numpy_example.py</span>
+              <button onclick="copyCommand('python 07_numpy_example.py', this)" class="inline-flex items-center gap-1 text-[11px] font-mono text-emerald-400 hover:text-emerald-300 bg-emerald-500/10 px-2 py-1 rounded border border-emerald-500/20 hover:border-emerald-500/40">
+                <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 16H6a2 2 0 01-2-2V6a2 2 0 012-2h8a2 2 0 012 2v2m-6 12h8a2 2 0 002-2v-8a2 2 0 00-2-2h-8a2 2 0 00-2 2v8a2 2 0 002 2z"></path></svg>
+                <span>Run</span>
+              </button>
+            </div>
+          </div>
+
+          <div class="border-t border-slate-800 bg-slate-950/70 rounded-b-2xl overflow-hidden">
+            <div class="flex items-center justify-between px-4 py-2 border-b border-slate-800/80 bg-slate-900/50 text-[11px]">
+              <div class="flex items-center gap-2">
+                <button onclick="switchTab(this, 'code-07', 'out-07')" class="tab-btn font-mono font-medium text-emerald-400 pb-0.5 border-b-2 border-emerald-400">Código</button>
+                <button onclick="switchTab(this, 'out-07', 'code-07')" class="tab-btn font-mono font-medium text-slate-400 hover:text-slate-200 pb-0.5 border-b-2 border-transparent">Salida</button>
+              </div>
+              <button onclick="copyCardSnippet('snippet-07', this)" class="text-slate-400 hover:text-emerald-400 transition-colors p-1" title="Copiar snippet">
+                <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 16H6a2 2 0 01-2-2V6a2 2 0 012-2h8a2 2 0 012 2v2m-6 12h8a2 2 0 002-2v-8a2 2 0 00-2-2h-8a2 2 0 00-2 2v8a2 2 0 002 2z"></path></svg>
+              </button>
+            </div>
+
+            <pre id="code-07" class="tab-pane p-4 text-[11px] leading-relaxed font-mono overflow-x-auto text-slate-300 max-h-48 scrollbar-thin"><code id="snippet-07"><span class="token-kw">import</span> numpy <span class="token-kw">as</span> np
+
+datos = np.<span class="token-fn">array</span>([<span class="token-num">12</span>, <span class="token-num">45</span>, <span class="token-num">78</span>, <span class="token-num">23</span>, <span class="token-num">89</span>, <span class="token-num">34</span>, <span class="token-num">91</span>, <span class="token-num">15</span>])
+
+<span class="token-comment"># Filtrado booleano vectorizado</span>
+mayores_40 = datos[datos > <span class="token-num">40</span>]  <span class="token-comment"># [45, 78, 89, 91]</span>
+
+<span class="token-comment"># Álgebra lineal: Multiplicación matricial</span>
+A = np.<span class="token-fn">array</span>([[<span class="token-num">1</span>, <span class="token-num">2</span>], [<span class="token-num">3</span>, <span class="token-num">4</span>]])
+B = np.<span class="token-fn">array</span>([[<span class="token-num">5</span>, <span class="token-num">6</span>], [<span class="token-num">7</span>, <span class="token-num">8</span>]])
+producto = A @ B  <span class="token-comment"># [[19, 22], [43, 50]]</span></code></pre>
+
+            <pre id="out-07" class="tab-pane hidden p-4 text-[11px] leading-relaxed font-mono overflow-x-auto text-emerald-400/90 max-h-48 scrollbar-thin bg-black/40"><code>Elementos > 40: [45 78 89 91]
+Reemplazo con np.where: ['Reprobado' 'Reprobado' 'Aprobado' ...]
+Multiplicación A @ B:
+[[19 22]
+ [43 50]]
+Determinante det(A): -2.0000 [OK]</code></pre>
+          </div>
+        </div>
+
+        <!-- ================= CARD 08: PANDAS ================= -->
+        <div class="lib-card flex flex-col rounded-2xl bg-slate-900/70 border border-slate-800/80 hover:border-emerald-500/50 transition-all duration-300 hover:shadow-xl hover:shadow-emerald-950/20 group"
+             data-category="data" data-tags="pandas dataframes analitica groupby fillna nulos limpieza series">
+          <div class="p-5 pb-3 flex-1 flex flex-col justify-between">
+            <div>
+              <div class="flex items-start justify-between gap-3">
+                <div class="flex items-center gap-3">
+                  <div class="w-10 h-10 rounded-xl bg-emerald-500/10 border border-emerald-500/20 flex items-center justify-center text-emerald-400 group-hover:scale-105 transition-transform">
+                    <!-- DataFrame / Table Icon -->
+                    <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 10h16M4 14h16M4 18h16"></path>
+                    </svg>
+                  </div>
+                  <div>
+                    <div class="flex items-center gap-2">
+                      <h3 class="font-bold text-slate-100 text-lg group-hover:text-emerald-400 transition-colors">Pandas</h3>
+                      <span class="px-2 py-0.5 text-[10px] font-mono bg-slate-800 text-slate-300 rounded border border-slate-700">#08</span>
+                    </div>
+                    <span class="text-[11px] font-medium text-emerald-400">pip install pandas</span>
+                  </div>
+                </div>
+                <span class="px-2.5 py-1 text-[11px] font-medium bg-emerald-500/10 text-emerald-300 border border-emerald-500/20 rounded-full">Externa</span>
+              </div>
+
+              <p class="text-xs text-slate-400 mt-3 leading-relaxed">
+                Análisis exploratorio y manipulación de datos tabulares con <code class="text-emerald-400">DataFrame</code>. Detección e imputación inteligente de valores <code class="text-emerald-400">NaN</code> y agrupaciones con <code class="text-emerald-400">groupby().agg()</code>.
+              </p>
+
+              <div class="flex flex-wrap gap-1.5 mt-3.5">
+                <span class="px-2 py-0.5 text-[10px] bg-slate-800/80 text-slate-300 rounded-md">DataFrame & describe</span>
+                <span class="px-2 py-0.5 text-[10px] bg-slate-800/80 text-slate-300 rounded-md">Imputación fillna</span>
+                <span class="px-2 py-0.5 text-[10px] bg-slate-800/80 text-slate-300 rounded-md">groupby + agg</span>
+                <span class="px-2 py-0.5 text-[10px] bg-slate-800/80 text-slate-300 rounded-md">Filtros booleanos</span>
+              </div>
+            </div>
+
+            <div class="mt-4 pt-3 border-t border-slate-800 flex items-center justify-between text-xs">
+              <span class="font-mono text-[11px] text-slate-400">08_pandas_example.py</span>
+              <button onclick="copyCommand('python 08_pandas_example.py', this)" class="inline-flex items-center gap-1 text-[11px] font-mono text-emerald-400 hover:text-emerald-300 bg-emerald-500/10 px-2 py-1 rounded border border-emerald-500/20 hover:border-emerald-500/40">
+                <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 16H6a2 2 0 01-2-2V6a2 2 0 012-2h8a2 2 0 012 2v2m-6 12h8a2 2 0 002-2v-8a2 2 0 00-2-2h-8a2 2 0 00-2 2v8a2 2 0 002 2z"></path></svg>
+                <span>Run</span>
+              </button>
+            </div>
+          </div>
+
+          <div class="border-t border-slate-800 bg-slate-950/70 rounded-b-2xl overflow-hidden">
+            <div class="flex items-center justify-between px-4 py-2 border-b border-slate-800/80 bg-slate-900/50 text-[11px]">
+              <div class="flex items-center gap-2">
+                <button onclick="switchTab(this, 'code-08', 'out-08')" class="tab-btn font-mono font-medium text-emerald-400 pb-0.5 border-b-2 border-emerald-400">Código</button>
+                <button onclick="switchTab(this, 'out-08', 'code-08')" class="tab-btn font-mono font-medium text-slate-400 hover:text-slate-200 pb-0.5 border-b-2 border-transparent">Salida</button>
+              </div>
+              <button onclick="copyCardSnippet('snippet-08', this)" class="text-slate-400 hover:text-emerald-400 transition-colors p-1" title="Copiar snippet">
+                <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 16H6a2 2 0 01-2-2V6a2 2 0 012-2h8a2 2 0 012 2v2m-6 12h8a2 2 0 002-2v-8a2 2 0 00-2-2h-8a2 2 0 00-2 2v8a2 2 0 002 2z"></path></svg>
+              </button>
+            </div>
+
+            <pre id="code-08" class="tab-pane p-4 text-[11px] leading-relaxed font-mono overflow-x-auto text-slate-300 max-h-48 scrollbar-thin"><code id="snippet-08"><span class="token-kw">import</span> pandas <span class="token-kw">as</span> pd
+
+<span class="token-comment"># Imputación de salarios nulos por departamento</span>
+media_ventas = df[df[<span class="token-str">"departamento"</span>] == <span class="token-str">"Ventas"</span>][<span class="token-str">"salario"</span>].<span class="token-fn">mean</span>()
+df[<span class="token-str">"salario"</span>] = df[<span class="token-str">"salario"</span>].<span class="token-fn">fillna</span>(media_ventas)
+
+<span class="token-comment"># Agregaciones multidimensionales</span>
+resumen = df.<span class="token-fn">groupby</span>(<span class="token-str">"departamento"</span>).<span class="token-fn">agg</span>({
+    <span class="token-str">"salario"</span>: [<span class="token-str">"mean"</span>, <span class="token-str">"max"</span>],
+    <span class="token-str">"evaluacion_desempeno"</span>: <span class="token-str">"mean"</span>
+}).<span class="token-fn">round</span>(<span class="token-num">2</span>)</code></pre>
+
+            <pre id="out-08" class="tab-pane hidden p-4 text-[11px] leading-relaxed font-mono overflow-x-auto text-emerald-400/90 max-h-48 scrollbar-thin bg-black/40"><code>Dimensiones: 8 filas x 7 columnas
+Salario faltante imputado ($3,325.00).
+Agrupación por departamento:
+           salario_mean  desempeno_mean
+Marketing       3000.00            7.80
+TI              4116.67            9.33
+Ventas          3325.00            8.23 [OK]</code></pre>
+          </div>
+        </div>
+
+        <!-- ================= CARD 09: MATPLOTLIB ================= -->
+        <div class="lib-card flex flex-col rounded-2xl bg-slate-900/70 border border-slate-800/80 hover:border-emerald-500/50 transition-all duration-300 hover:shadow-xl hover:shadow-emerald-950/20 group"
+             data-category="data" data-tags="matplotlib graficos charts subplots histograma dispersion barras visualizacion">
+          <div class="p-5 pb-3 flex-1 flex flex-col justify-between">
+            <div>
+              <div class="flex items-start justify-between gap-3">
+                <div class="flex items-center gap-3">
+                  <div class="w-10 h-10 rounded-xl bg-emerald-500/10 border border-emerald-500/20 flex items-center justify-center text-emerald-400 group-hover:scale-105 transition-transform">
+                    <!-- Chart / TrendingUp Icon -->
+                    <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 12l3-3 3 3 4-4M8 21l4-4 4 4M3 4h18M4 4h16v12a1 1 0 01-1 1H5a1 1 0 01-1-1V4z"></path>
+                    </svg>
+                  </div>
+                  <div>
+                    <div class="flex items-center gap-2">
+                      <h3 class="font-bold text-slate-100 text-lg group-hover:text-emerald-400 transition-colors">Matplotlib</h3>
+                      <span class="px-2 py-0.5 text-[10px] font-mono bg-slate-800 text-slate-300 rounded border border-slate-700">#09</span>
+                    </div>
+                    <span class="text-[11px] font-medium text-emerald-400">pip install matplotlib</span>
+                  </div>
+                </div>
+                <span class="px-2.5 py-1 text-[11px] font-medium bg-emerald-500/10 text-emerald-300 border border-emerald-500/20 rounded-full">Externa</span>
+              </div>
+
+              <p class="text-xs text-slate-400 mt-3 leading-relaxed">
+                Dashboard analítico con panel 2x2 de subplots: líneas temporales con <code class="text-emerald-400">fill_between</code>, barras categóricas, histograma de frecuencias y scatter plot con colormaps a 300 DPI.
+              </p>
+
+              <div class="flex flex-wrap gap-1.5 mt-3.5">
+                <span class="px-2 py-0.5 text-[10px] bg-slate-800/80 text-slate-300 rounded-md">Subplots 2x2</span>
+                <span class="px-2 py-0.5 text-[10px] bg-slate-800/80 text-slate-300 rounded-md">fill_between</span>
+                <span class="px-2 py-0.5 text-[10px] bg-slate-800/80 text-slate-300 rounded-md">Scatter + Colormap</span>
+                <span class="px-2 py-0.5 text-[10px] bg-slate-800/80 text-slate-300 rounded-md">Exportación PNG 300 DPI</span>
+              </div>
+            </div>
+
+            <div class="mt-4 pt-3 border-t border-slate-800 flex items-center justify-between text-xs">
+              <span class="font-mono text-[11px] text-slate-400">09_matplotlib_example.py</span>
+              <button onclick="copyCommand('python 09_matplotlib_example.py', this)" class="inline-flex items-center gap-1 text-[11px] font-mono text-emerald-400 hover:text-emerald-300 bg-emerald-500/10 px-2 py-1 rounded border border-emerald-500/20 hover:border-emerald-500/40">
+                <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 16H6a2 2 0 01-2-2V6a2 2 0 012-2h8a2 2 0 012 2v2m-6 12h8a2 2 0 002-2v-8a2 2 0 00-2-2h-8a2 2 0 00-2 2v8a2 2 0 002 2z"></path></svg>
+                <span>Run</span>
+              </button>
+            </div>
+          </div>
+
+          <div class="border-t border-slate-800 bg-slate-950/70 rounded-b-2xl overflow-hidden">
+            <div class="flex items-center justify-between px-4 py-2 border-b border-slate-800/80 bg-slate-900/50 text-[11px]">
+              <div class="flex items-center gap-2">
+                <button onclick="switchTab(this, 'code-09', 'out-09')" class="tab-btn font-mono font-medium text-emerald-400 pb-0.5 border-b-2 border-emerald-400">Código</button>
+                <button onclick="switchTab(this, 'out-09', 'code-09')" class="tab-btn font-mono font-medium text-slate-400 hover:text-slate-200 pb-0.5 border-b-2 border-transparent">Salida</button>
+              </div>
+              <button onclick="copyCardSnippet('snippet-09', this)" class="text-slate-400 hover:text-emerald-400 transition-colors p-1" title="Copiar snippet">
+                <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 16H6a2 2 0 01-2-2V6a2 2 0 012-2h8a2 2 0 012 2v2m-6 12h8a2 2 0 002-2v-8a2 2 0 00-2-2h-8a2 2 0 00-2 2v8a2 2 0 002 2z"></path></svg>
+              </button>
+            </div>
+
+            <pre id="code-09" class="tab-pane p-4 text-[11px] leading-relaxed font-mono overflow-x-auto text-slate-300 max-h-48 scrollbar-thin"><code id="snippet-09"><span class="token-kw">import</span> matplotlib.pyplot <span class="token-kw">as</span> plt
+
+fig, axes = plt.<span class="token-fn">subplots</span>(nrows=<span class="token-num">2</span>, ncols=<span class="token-num">2</span>, figsize=(<span class="token-num">14</span>, <span class="token-num">10</span>))
+
+<span class="token-comment"># 1. Líneas con área sombreada</span>
+ax = axes[<span class="token-num">0</span>, <span class="token-num">0</span>]
+ax.<span class="token-fn">plot</span>(meses, ingresos, label=<span class="token-str">"Ingresos ($k)"</span>, color=<span class="token-str">"#2E7D32"</span>)
+ax.<span class="token-fn">fill_between</span>(meses, ingresos, costos, color=<span class="token-str">"#81C784"</span>, alpha=<span class="token-num">0.25</span>)
+
+<span class="token-comment"># Guardar en alta definición</span>
+plt.<span class="token-fn">savefig</span>(<span class="token-str">"grafico_matplotlib.png"</span>, dpi=<span class="token-num">300</span>)</code></pre>
+
+            <pre id="out-09" class="tab-pane hidden p-4 text-[11px] leading-relaxed font-mono overflow-x-auto text-emerald-400/90 max-h-48 scrollbar-thin bg-black/40"><code>Generando panel analítico con 4 gráficos...
+[1] Líneas temporales con margen bruto.
+[2] Barras de ventas Q3.
+[3] Histograma de distribución gaussiana.
+[4] Dispersión con escala viridis.
+Imagen 'grafico_matplotlib.png' exportada a 300 DPI. [OK]</code></pre>
+          </div>
+        </div>
+
+        <!-- ================= CARD 10: REQUESTS ================= -->
+        <div class="lib-card flex flex-col rounded-2xl bg-slate-900/70 border border-slate-800/80 hover:border-cyan-500/50 transition-all duration-300 hover:shadow-xl hover:shadow-cyan-950/20 group"
+             data-category="web" data-tags="requests http api rest json cliente get post headers">
+          <div class="p-5 pb-3 flex-1 flex flex-col justify-between">
+            <div>
+              <div class="flex items-start justify-between gap-3">
+                <div class="flex items-center gap-3">
+                  <div class="w-10 h-10 rounded-xl bg-cyan-500/10 border border-cyan-500/20 flex items-center justify-center text-cyan-400 group-hover:scale-105 transition-transform">
+                    <!-- Network / Globe Icon -->
+                    <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 12a9 9 0 01-9 9m9-9a9 9 0 00-9-9m9 9H3m9 9a9 9 0 01-9-9m9 9c1.657 0 3-4.03 3-9s-1.343-9-3-9m0 18c-1.657 0-3-4.03-3-9s1.343-9 3-9m-9 9a9 9 0 019-9"></path>
+                    </svg>
+                  </div>
+                  <div>
+                    <div class="flex items-center gap-2">
+                      <h3 class="font-bold text-slate-100 text-lg group-hover:text-cyan-400 transition-colors">Requests</h3>
+                      <span class="px-2 py-0.5 text-[10px] font-mono bg-slate-800 text-slate-300 rounded border border-slate-700">#10</span>
+                    </div>
+                    <span class="text-[11px] font-medium text-cyan-400">pip install requests</span>
+                  </div>
+                </div>
+                <span class="px-2.5 py-1 text-[11px] font-medium bg-cyan-500/10 text-cyan-300 border border-cyan-500/20 rounded-full">Externa</span>
+              </div>
+
+              <p class="text-xs text-slate-400 mt-3 leading-relaxed">
+                Cliente HTTP elegante para interactuar con APIs REST. Peticiones <code class="text-cyan-400">GET</code> y <code class="text-cyan-400">POST</code> con serialización JSON, headers personalizados, timeouts y control de fallos con <code class="text-cyan-400">raise_for_status()</code>.
+              </p>
+
+              <div class="flex flex-wrap gap-1.5 mt-3.5">
+                <span class="px-2 py-0.5 text-[10px] bg-slate-800/80 text-slate-300 rounded-md">GET / POST REST</span>
+                <span class="px-2 py-0.5 text-[10px] bg-slate-800/80 text-slate-300 rounded-md">raise_for_status()</span>
+                <span class="px-2 py-0.5 text-[10px] bg-slate-800/80 text-slate-300 rounded-md">JSON parsing</span>
+                <span class="px-2 py-0.5 text-[10px] bg-slate-800/80 text-slate-300 rounded-md">Timeouts seguros</span>
+              </div>
+            </div>
+
+            <div class="mt-4 pt-3 border-t border-slate-800 flex items-center justify-between text-xs">
+              <span class="font-mono text-[11px] text-slate-400">10_requests_example.py</span>
+              <button onclick="copyCommand('python 10_requests_example.py', this)" class="inline-flex items-center gap-1 text-[11px] font-mono text-cyan-400 hover:text-cyan-300 bg-cyan-500/10 px-2 py-1 rounded border border-cyan-500/20 hover:border-cyan-500/40">
+                <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 16H6a2 2 0 01-2-2V6a2 2 0 012-2h8a2 2 0 012 2v2m-6 12h8a2 2 0 002-2v-8a2 2 0 00-2-2h-8a2 2 0 00-2 2v8a2 2 0 002 2z"></path></svg>
+                <span>Run</span>
+              </button>
+            </div>
+          </div>
+
+          <div class="border-t border-slate-800 bg-slate-950/70 rounded-b-2xl overflow-hidden">
+            <div class="flex items-center justify-between px-4 py-2 border-b border-slate-800/80 bg-slate-900/50 text-[11px]">
+              <div class="flex items-center gap-2">
+                <button onclick="switchTab(this, 'code-10', 'out-10')" class="tab-btn font-mono font-medium text-cyan-400 pb-0.5 border-b-2 border-cyan-400">Código</button>
+                <button onclick="switchTab(this, 'out-10', 'code-10')" class="tab-btn font-mono font-medium text-slate-400 hover:text-slate-200 pb-0.5 border-b-2 border-transparent">Salida</button>
+              </div>
+              <button onclick="copyCardSnippet('snippet-10', this)" class="text-slate-400 hover:text-cyan-400 transition-colors p-1" title="Copiar snippet">
+                <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 16H6a2 2 0 01-2-2V6a2 2 0 012-2h8a2 2 0 012 2v2m-6 12h8a2 2 0 002-2v-8a2 2 0 00-2-2h-8a2 2 0 00-2 2v8a2 2 0 002 2z"></path></svg>
+              </button>
+            </div>
+
+            <pre id="code-10" class="tab-pane p-4 text-[11px] leading-relaxed font-mono overflow-x-auto text-slate-300 max-h-48 scrollbar-thin"><code id="snippet-10"><span class="token-kw">import</span> requests
+
+url = <span class="token-str">"https://jsonplaceholder.typicode.com/posts"</span>
+params = {<span class="token-str">"userId"</span>: <span class="token-num">1</span>}
+
+<span class="token-comment"># GET con timeout y control de excepciones</span>
+res = requests.<span class="token-fn">get</span>(url, params=params, timeout=<span class="token-num">10</span>)
+res.<span class="token-fn">raise_for_status</span>()  <span class="token-comment"># Error si 4xx o 5xx</span>
+
+posts = res.<span class="token-fn">json</span>()
+<span class="token-builtin">print</span>(f<span class="token-str">"Obtenidos {len(posts)} posts del servidor."</span>)</code></pre>
+
+            <pre id="out-10" class="tab-pane hidden p-4 text-[11px] leading-relaxed font-mono overflow-x-auto text-cyan-400/90 max-h-48 scrollbar-thin bg-black/40"><code>Código de estado: 200 (OK)
+Content-Type: application/json; charset=utf-8
+Obtenidos 10 posts del servidor.
+POST /posts generado con id=101 (HTTP 201 Created) [OK]</code></pre>
+          </div>
+        </div>
+
+        <!-- ================= CARD 11: FLASK ================= -->
+        <div class="lib-card flex flex-col rounded-2xl bg-slate-900/70 border border-slate-800/80 hover:border-cyan-500/50 transition-all duration-300 hover:shadow-xl hover:shadow-cyan-950/20 group"
+             data-category="web" data-tags="flask microservicio servidor web api rest jsonify testclient routes">
+          <div class="p-5 pb-3 flex-1 flex flex-col justify-between">
+            <div>
+              <div class="flex items-start justify-between gap-3">
+                <div class="flex items-center gap-3">
+                  <div class="w-10 h-10 rounded-xl bg-cyan-500/10 border border-cyan-500/20 flex items-center justify-center text-cyan-400 group-hover:scale-105 transition-transform">
+                    <!-- Zap / Server Icon -->
+                    <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"></path>
+                    </svg>
+                  </div>
+                  <div>
+                    <div class="flex items-center gap-2">
+                      <h3 class="font-bold text-slate-100 text-lg group-hover:text-cyan-400 transition-colors">Flask</h3>
+                      <span class="px-2 py-0.5 text-[10px] font-mono bg-slate-800 text-slate-300 rounded border border-slate-700">#11</span>
+                    </div>
+                    <span class="text-[11px] font-medium text-cyan-400">pip install flask</span>
+                  </div>
+                </div>
+                <span class="px-2.5 py-1 text-[11px] font-medium bg-cyan-500/10 text-cyan-300 border border-cyan-500/20 rounded-full">Externa</span>
+              </div>
+
+              <p class="text-xs text-slate-400 mt-3 leading-relaxed">
+                Microservicio web y API REST. Rutas dinámicas, respuestas JSON, códigos HTTP semánticos (200, 201, 400, 404) y arquitectura dual: servidor en vivo (<code class="text-cyan-400">--server</code>) o test suite automático sin bloqueos.
+              </p>
+
+              <div class="flex flex-wrap gap-1.5 mt-3.5">
+                <span class="px-2 py-0.5 text-[10px] bg-slate-800/80 text-slate-300 rounded-md">@app.route</span>
+                <span class="px-2 py-0.5 text-[10px] bg-slate-800/80 text-slate-300 rounded-md">jsonify & request</span>
+                <span class="px-2 py-0.5 text-[10px] bg-slate-800/80 text-slate-300 rounded-md">TestClient suite</span>
+                <span class="px-2 py-0.5 text-[10px] bg-slate-800/80 text-slate-300 rounded-md">--server en vivo</span>
+              </div>
+            </div>
+
+            <div class="mt-4 pt-3 border-t border-slate-800 flex items-center justify-between text-xs">
+              <span class="font-mono text-[11px] text-slate-400">11_flask_example.py</span>
+              <button onclick="copyCommand('python 11_flask_example.py', this)" class="inline-flex items-center gap-1 text-[11px] font-mono text-cyan-400 hover:text-cyan-300 bg-cyan-500/10 px-2 py-1 rounded border border-cyan-500/20 hover:border-cyan-500/40">
+                <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 16H6a2 2 0 01-2-2V6a2 2 0 012-2h8a2 2 0 012 2v2m-6 12h8a2 2 0 002-2v-8a2 2 0 00-2-2h-8a2 2 0 00-2 2v8a2 2 0 002 2z"></path></svg>
+                <span>Run</span>
+              </button>
+            </div>
+          </div>
+
+          <div class="border-t border-slate-800 bg-slate-950/70 rounded-b-2xl overflow-hidden">
+            <div class="flex items-center justify-between px-4 py-2 border-b border-slate-800/80 bg-slate-900/50 text-[11px]">
+              <div class="flex items-center gap-2">
+                <button onclick="switchTab(this, 'code-11', 'out-11')" class="tab-btn font-mono font-medium text-cyan-400 pb-0.5 border-b-2 border-cyan-400">Código</button>
+                <button onclick="switchTab(this, 'out-11', 'code-11')" class="tab-btn font-mono font-medium text-slate-400 hover:text-slate-200 pb-0.5 border-b-2 border-transparent">Salida</button>
+              </div>
+              <button onclick="copyCardSnippet('snippet-11', this)" class="text-slate-400 hover:text-cyan-400 transition-colors p-1" title="Copiar snippet">
+                <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 16H6a2 2 0 01-2-2V6a2 2 0 012-2h8a2 2 0 012 2v2m-6 12h8a2 2 0 002-2v-8a2 2 0 00-2-2h-8a2 2 0 00-2 2v8a2 2 0 002 2z"></path></svg>
+              </button>
+            </div>
+
+            <pre id="code-11" class="tab-pane p-4 text-[11px] leading-relaxed font-mono overflow-x-auto text-slate-300 max-h-48 scrollbar-thin"><code id="snippet-11"><span class="token-kw">from</span> flask <span class="token-kw">import</span> Flask, jsonify, request
+
+app = <span class="token-fn">Flask</span>(__name__)
+
+<span class="token-comment"># Endpoint dinámico con parámetros de ruta</span>
+<span class="token-builtin">@app.route</span>(<span class="token-str">"/api/productos/&lt;int:id&gt;"</span>, methods=[<span class="token-str">"GET"</span>])
+<span class="token-kw">def</span> <span class="token-fn">obtener_producto</span>(id: <span class="token-builtin">int</span>):
+    prod = <span class="token-builtin">next</span>((p <span class="token-kw">for</span> p <span class="token-kw">in</span> PRODUCTOS <span class="token-kw">if</span> p[<span class="token-str">"id"</span>] == id), <span class="token-builtin">None</span>)
+    <span class="token-kw">if</span> prod <span class="token-kw">is</span> <span class="token-builtin">None</span>:
+        <span class="token-kw">return</span> <span class="token-fn">jsonify</span>({<span class="token-str">"error"</span>: <span class="token-str">"No encontrado"</span>}), <span class="token-num">404</span>
+    <span class="token-kw">return</span> <span class="token-fn">jsonify</span>(prod), <span class="token-num">200</span></code></pre>
+
+            <pre id="out-11" class="tab-pane hidden p-4 text-[11px] leading-relaxed font-mono overflow-x-auto text-cyan-400/90 max-h-48 scrollbar-thin bg-black/40"><code>[TEST CLIENT] Ejecutando pruebas automatizadas:
+-> GET  /api/productos           : HTTP 200 (Total: 3)
+-> GET  /api/productos/1         : HTTP 200 (Monitor 4K)
+-> POST /api/productos (nuevo)   : HTTP 201 (Creado ID 4)
+-> GET  /api/productos/999       : HTTP 404 (Control de error)
+¡Batería de 5 pruebas superada exitosamente! [OK]</code></pre>
+          </div>
+        </div>
+
+        <!-- ================= CARD 12: SCIKIT-LEARN ================= -->
+        <div class="lib-card flex flex-col rounded-2xl bg-slate-900/70 border border-slate-800/80 hover:border-purple-500/50 transition-all duration-300 hover:shadow-xl hover:shadow-purple-950/20 group"
+             data-category="ml" data-tags="scikit-learn sklearn machine learning iris randomforest clasificacion metricas">
+          <div class="p-5 pb-3 flex-1 flex flex-col justify-between">
+            <div>
+              <div class="flex items-start justify-between gap-3">
+                <div class="flex items-center gap-3">
+                  <div class="w-10 h-10 rounded-xl bg-purple-500/10 border border-purple-500/20 flex items-center justify-center text-purple-400 group-hover:scale-105 transition-transform">
+                    <!-- Brain / ML Icon -->
+                    <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 117.072 0l-.548.547A3.374 3.374 0 0014 18.469V19a2 2 0 11-4 0v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z"></path>
+                    </svg>
+                  </div>
+                  <div>
+                    <div class="flex items-center gap-2">
+                      <h3 class="font-bold text-slate-100 text-lg group-hover:text-purple-400 transition-colors">scikit-learn</h3>
+                      <span class="px-2 py-0.5 text-[10px] font-mono bg-slate-800 text-slate-300 rounded border border-slate-700">#12</span>
+                    </div>
+                    <span class="text-[11px] font-medium text-purple-400">pip install scikit-learn</span>
+                  </div>
+                </div>
+                <span class="px-2.5 py-1 text-[11px] font-medium bg-purple-500/10 text-purple-300 border border-purple-500/20 rounded-full">Externa</span>
+              </div>
+
+              <p class="text-xs text-slate-400 mt-3 leading-relaxed">
+                Pipeline integral de Machine Learning: dataset Iris, partición <code class="text-purple-400">train_test_split</code>, estandarización con <code class="text-purple-400">StandardScaler</code>, clasificador <code class="text-purple-400">RandomForest</code>, matriz de confusión e inferencia con probabilidades.
+              </p>
+
+              <div class="flex flex-wrap gap-1.5 mt-3.5">
+                <span class="px-2 py-0.5 text-[10px] bg-slate-800/80 text-slate-300 rounded-md">RandomForestClassifier</span>
+                <span class="px-2 py-0.5 text-[10px] bg-slate-800/80 text-slate-300 rounded-md">train_test_split</span>
+                <span class="px-2 py-0.5 text-[10px] bg-slate-800/80 text-slate-300 rounded-md">StandardScaler</span>
+                <span class="px-2 py-0.5 text-[10px] bg-slate-800/80 text-slate-300 rounded-md">predict_proba</span>
+              </div>
+            </div>
+
+            <div class="mt-4 pt-3 border-t border-slate-800 flex items-center justify-between text-xs">
+              <span class="font-mono text-[11px] text-slate-400">12_sklearn_example.py</span>
+              <button onclick="copyCommand('python 12_sklearn_example.py', this)" class="inline-flex items-center gap-1 text-[11px] font-mono text-purple-400 hover:text-purple-300 bg-purple-500/10 px-2 py-1 rounded border border-purple-500/20 hover:border-purple-500/40">
+                <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 16H6a2 2 0 01-2-2V6a2 2 0 012-2h8a2 2 0 012 2v2m-6 12h8a2 2 0 002-2v-8a2 2 0 00-2-2h-8a2 2 0 00-2 2v8a2 2 0 002 2z"></path></svg>
+                <span>Run</span>
+              </button>
+            </div>
+          </div>
+
+          <div class="border-t border-slate-800 bg-slate-950/70 rounded-b-2xl overflow-hidden">
+            <div class="flex items-center justify-between px-4 py-2 border-b border-slate-800/80 bg-slate-900/50 text-[11px]">
+              <div class="flex items-center gap-2">
+                <button onclick="switchTab(this, 'code-12', 'out-12')" class="tab-btn font-mono font-medium text-purple-400 pb-0.5 border-b-2 border-purple-400">Código</button>
+                <button onclick="switchTab(this, 'out-12', 'code-12')" class="tab-btn font-mono font-medium text-slate-400 hover:text-slate-200 pb-0.5 border-b-2 border-transparent">Salida</button>
+              </div>
+              <button onclick="copyCardSnippet('snippet-12', this)" class="text-slate-400 hover:text-purple-400 transition-colors p-1" title="Copiar snippet">
+                <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 16H6a2 2 0 01-2-2V6a2 2 0 012-2h8a2 2 0 012 2v2m-6 12h8a2 2 0 002-2v-8a2 2 0 00-2-2h-8a2 2 0 00-2 2v8a2 2 0 002 2z"></path></svg>
+              </button>
+            </div>
+
+            <pre id="code-12" class="tab-pane p-4 text-[11px] leading-relaxed font-mono overflow-x-auto text-slate-300 max-h-48 scrollbar-thin"><code id="snippet-12"><span class="token-kw">from</span> sklearn.ensemble <span class="token-kw">import</span> RandomForestClassifier
+<span class="token-kw">from</span> sklearn.metrics <span class="token-kw">import</span> accuracy_score, classification_report
+
+<span class="token-comment"># Ajustar clasificador RandomForest (100 árboles)</span>
+modelo = <span class="token-fn">RandomForestClassifier</span>(n_estimators=<span class="token-num">100</span>, random_state=<span class="token-num">42</span>)
+modelo.<span class="token-fn">fit</span>(X_train_escalado, y_train)
+
+<span class="token-comment"># Evaluación de exactitud</span>
+y_pred = modelo.<span class="token-fn">predict</span>(X_test_escalado)
+exactitud = <span class="token-fn">accuracy_score</span>(y_test, y_pred)
+<span class="token-builtin">print</span>(f<span class="token-str">"Exactitud (Accuracy): {exactitud:.2%}"</span>)</code></pre>
+
+            <pre id="out-12" class="tab-pane hidden p-4 text-[11px] leading-relaxed font-mono overflow-x-auto text-purple-400/90 max-h-48 scrollbar-thin bg-black/40"><code>Carga Dataset: 150 muestras, 4 características
+División 70% Train (105) / 30% Test (45)
+Exactitud (Accuracy) : 95.56%
+Clasificación nuevo espécimen:
+-> Predicción: 'versicolor' (Probabilidad: 93.0%) [OK]</code></pre>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- REPOSITORY OVERVIEW & FILE STRUCTURE SECTION -->
+    <section id="repository" class="space-y-8 pt-4">
+      <div class="border-b border-slate-800 pb-4">
+        <div class="flex items-center gap-3">
+          <div class="p-2 rounded-lg bg-cyan-500/10 border border-cyan-500/20 text-cyan-400">
+            <!-- Folder Icon -->
+            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 7v10a2 2 0 002 2h14a2 2 0 002-2V9a2 2 0 00-2-2h-6l-2-2H5a2 2 0 00-2 2z"></path>
+            </svg>
+          </div>
+          <div>
+            <h2 class="text-2xl font-bold text-slate-100 tracking-tight">Estructura del Repositorio</h2>
+            <p class="text-xs text-slate-400">Arquitectura modular limpia, configuración para VS Code y dependencias declaradas</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="grid grid-cols-1 lg:grid-cols-12 gap-6">
+        
+        <!-- Left Column: Tree View File System -->
+        <div class="lg:col-span-7 rounded-2xl bg-slate-900/80 border border-slate-800 p-6 flex flex-col justify-between">
+          <div>
+            <div class="flex items-center justify-between pb-4 border-b border-slate-800/80">
+              <div class="flex items-center gap-2">
+                <span class="w-3 h-3 rounded-full bg-red-500/80"></span>
+                <span class="w-3 h-3 rounded-full bg-amber-500/80"></span>
+                <span class="w-3 h-3 rounded-full bg-emerald-500/80"></span>
+                <span class="ml-2 font-mono text-xs text-slate-400">python-librerias-ejemplos/</span>
+              </div>
+              <span class="text-[11px] font-mono text-slate-400">12 Scripts + Docs</span>
+            </div>
+
+            <!-- Interactive Tree -->
+            <div class="font-mono text-xs space-y-2 py-4 text-slate-300">
+              <div class="flex items-center gap-2 text-slate-400">
+                <svg class="w-4 h-4 text-amber-400" fill="currentColor" viewBox="0 0 20 20"><path d="M2 6a2 2 0 012-2h5l2 2h5a2 2 0 012 2v6a2 2 0 01-2 2H4a2 2 0 01-2-2V6z"></path></svg>
+                <span class="text-slate-100 font-semibold">python-librerias-ejemplos/</span>
+              </div>
+
+              <!-- Standard Scripts -->
+              <div class="pl-6 space-y-1.5 border-l border-slate-800 ml-2">
+                <div class="text-[11px] font-sans font-semibold text-emerald-400/90 pt-1"># Biblioteca Estándar (Sin instalación)</div>
+                <div class="flex items-center justify-between py-1 px-2 rounded hover:bg-slate-800/60 transition-colors">
+                  <span class="flex items-center gap-2">
+                    <span class="text-emerald-400 font-bold">📄</span> 01_math_example.py
+                  </span>
+                  <span class="text-[10px] text-slate-400 font-sans">Aritmética, geometría, floats</span>
+                </div>
+                <div class="flex items-center justify-between py-1 px-2 rounded hover:bg-slate-800/60 transition-colors">
+                  <span class="flex items-center gap-2">
+                    <span class="text-emerald-400 font-bold">📄</span> 02_random_example.py
+                  </span>
+                  <span class="text-[10px] text-slate-400 font-sans">Muestreo, pesos, gauss</span>
+                </div>
+                <div class="flex items-center justify-between py-1 px-2 rounded hover:bg-slate-800/60 transition-colors">
+                  <span class="flex items-center gap-2">
+                    <span class="text-emerald-400 font-bold">📄</span> 03_datetime_example.py
+                  </span>
+                  <span class="text-[10px] text-slate-400 font-sans">Fechas, timedelta, UTC</span>
+                </div>
+                <div class="flex items-center justify-between py-1 px-2 rounded hover:bg-slate-800/60 transition-colors">
+                  <span class="flex items-center gap-2">
+                    <span class="text-emerald-400 font-bold">📄</span> 04_csv_example.py
+                  </span>
+                  <span class="text-[10px] text-slate-400 font-sans">DictWriter, DictReader</span>
+                </div>
+
+                <!-- External Scripts -->
+                <div class="text-[11px] font-sans font-semibold text-cyan-400/90 pt-2"># Librerías Externas (requirements.txt)</div>
+                <div class="flex items-center justify-between py-1 px-2 rounded hover:bg-slate-800/60 transition-colors">
+                  <span class="flex items-center gap-2">
+                    <span class="text-cyan-400 font-bold">📄</span> 05_fpdf_example.py
+                  </span>
+                  <span class="text-[10px] text-slate-400 font-sans">PDF vectorial con fpdf2</span>
+                </div>
+                <div class="flex items-center justify-between py-1 px-2 rounded hover:bg-slate-800/60 transition-colors">
+                  <span class="flex items-center gap-2">
+                    <span class="text-cyan-400 font-bold">📄</span> 06_reportlab_example.py
+                  </span>
+                  <span class="text-[10px] text-slate-400 font-sans">Platypus & NumberedCanvas</span>
+                </div>
+                <div class="flex items-center justify-between py-1 px-2 rounded hover:bg-slate-800/60 transition-colors">
+                  <span class="flex items-center gap-2">
+                    <span class="text-cyan-400 font-bold">📄</span> 07_numpy_example.py
+                  </span>
+                  <span class="text-[10px] text-slate-400 font-sans">ndarrays, máscaras, @</span>
+                </div>
+                <div class="flex items-center justify-between py-1 px-2 rounded hover:bg-slate-800/60 transition-colors">
+                  <span class="flex items-center gap-2">
+                    <span class="text-cyan-400 font-bold">📄</span> 08_pandas_example.py
+                  </span>
+                  <span class="text-[10px] text-slate-400 font-sans">DataFrames, groupby, fillna</span>
+                </div>
+                <div class="flex items-center justify-between py-1 px-2 rounded hover:bg-slate-800/60 transition-colors">
+                  <span class="flex items-center gap-2">
+                    <span class="text-cyan-400 font-bold">📄</span> 09_matplotlib_example.py
+                  </span>
+                  <span class="text-[10px] text-slate-400 font-sans">Panel 2x2, exportación 300DPI</span>
+                </div>
+                <div class="flex items-center justify-between py-1 px-2 rounded hover:bg-slate-800/60 transition-colors">
+                  <span class="flex items-center gap-2">
+                    <span class="text-cyan-400 font-bold">📄</span> 10_requests_example.py
+                  </span>
+                  <span class="text-[10px] text-slate-400 font-sans">REST HTTP GET / POST</span>
+                </div>
+                <div class="flex items-center justify-between py-1 px-2 rounded hover:bg-slate-800/60 transition-colors">
+                  <span class="flex items-center gap-2">
+                    <span class="text-cyan-400 font-bold">📄</span> 11_flask_example.py
+                  </span>
+                  <span class="text-[10px] text-slate-400 font-sans">API REST con TestClient y --server</span>
+                </div>
+                <div class="flex items-center justify-between py-1 px-2 rounded hover:bg-slate-800/60 transition-colors">
+                  <span class="flex items-center gap-2">
+                    <span class="text-purple-400 font-bold">📄</span> 12_sklearn_example.py
+                  </span>
+                  <span class="text-[10px] text-slate-400 font-sans">RandomForest con Dataset Iris</span>
+                </div>
+
+                <!-- Config & Documentation -->
+                <div class="text-[11px] font-sans font-semibold text-amber-400/90 pt-2"># Documentación & Configuración</div>
+                <div class="flex items-center justify-between py-1 px-2 rounded hover:bg-slate-800/60 transition-colors">
+                  <span class="flex items-center gap-2">
+                    <span class="text-amber-400 font-bold">📘</span> README.md
+                  </span>
+                  <span class="text-[10px] text-slate-400 font-sans">Guía técnica de 245 líneas</span>
+                </div>
+                <div class="flex items-center justify-between py-1 px-2 rounded hover:bg-slate-800/60 transition-colors">
+                  <span class="flex items-center gap-2">
+                    <span class="text-amber-400 font-bold">📦</span> requirements.txt
+                  </span>
+                  <span class="text-[10px] text-slate-400 font-sans">Dependencias con versiones mínimas</span>
+                </div>
+                <div class="flex items-center justify-between py-1 px-2 rounded hover:bg-slate-800/60 transition-colors">
+                  <span class="flex items-center gap-2">
+                    <span class="text-slate-500 font-bold">📁</span> .vscode/settings.json
+                  </span>
+                  <span class="text-[10px] text-slate-400 font-sans">Configuración recomendada del editor</span>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="pt-3 border-t border-slate-800/80 flex items-center justify-between text-xs text-slate-400">
+            <span>Diseño PEP 8 • Sin dependencias circulares</span>
+            <span class="text-emerald-400 font-mono">100% Autocontenido</span>
+          </div>
+        </div>
+
+        <!-- Right Column: requirements.txt & Environment Highlights -->
+        <div class="lg:col-span-5 space-y-6">
+          
+          <!-- Dependencies Card -->
+          <div class="rounded-2xl bg-slate-900/80 border border-slate-800 p-6 space-y-4">
+            <div class="flex items-center justify-between">
+              <div class="flex items-center gap-2">
+                <svg class="w-5 h-5 text-emerald-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20 7l-8-4-8 4m16 0l-8 4m8-4v10l-8 4m0-10L4 7m8 4v10M4 7v10l8 4"></path>
+                </svg>
+                <h3 class="font-bold text-slate-100 text-sm">requirements.txt</h3>
+              </div>
+              <button onclick="copyRequirements(this)" class="inline-flex items-center gap-1.5 px-2.5 py-1 text-xs font-mono text-emerald-400 bg-emerald-500/10 border border-emerald-500/20 hover:border-emerald-500/40 rounded-lg transition-colors">
+                <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 16H6a2 2 0 01-2-2V6a2 2 0 012-2h8a2 2 0 012 2v2m-6 12h8a2 2 0 002-2v-8a2 2 0 00-2-2h-8a2 2 0 00-2 2v8a2 2 0 002 2z"></path></svg>
+                <span>Copiar Todo</span>
+              </button>
+            </div>
+
+            <p class="text-xs text-slate-400">
+              Las primeras 4 librerías forman parte de la biblioteca estándar de Python sin requerir instalación. Las 8 restantes se instalan limpiamente en un solo comando:
+            </p>
+
+            <pre class="p-3.5 rounded-xl bg-slate-950/80 border border-slate-800 font-mono text-xs text-slate-300 leading-relaxed overflow-x-auto"><code id="rawRequirements">fpdf2>=2.8.0
+reportlab>=4.2.0
+numpy>=1.26.0
+pandas>=2.2.0
+matplotlib>=3.8.0
+requests>=2.31.0
+flask>=3.0.0
+scikit-learn>=1.4.0</code></pre>
+
+            <div class="p-3 rounded-xl bg-slate-800/40 border border-slate-700/60 text-xs text-slate-300 flex items-center justify-between">
+              <span class="font-mono text-emerald-400">pip install -r requirements.txt</span>
+              <button onclick="copyCommand('pip install -r requirements.txt', this)" class="text-slate-400 hover:text-emerald-400 p-1">
+                <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 16H6a2 2 0 01-2-2V6a2 2 0 012-2h8a2 2 0 012 2v2m-6 12h8a2 2 0 002-2v-8a2 2 0 00-2-2h-8a2 2 0 00-2 2v8a2 2 0 002 2z"></path></svg>
+              </button>
+            </div>
+          </div>
+
+          <!-- Academic Highlights Card -->
+          <div class="rounded-2xl bg-gradient-to-br from-slate-900/90 to-slate-900/50 border border-emerald-500/20 p-6 space-y-3">
+            <div class="flex items-center gap-2">
+              <span class="text-lg">🎯</span>
+              <h3 class="font-bold text-slate-100 text-sm">Objetivos de la Práctica (Unidad 2)</h3>
+            </div>
+            <ul class="text-xs text-slate-400 space-y-2 list-disc list-inside">
+              <li>Dominar el catálogo nativo (<code class="text-slate-300">math</code>, <code class="text-slate-300">random</code>, <code class="text-slate-300">datetime</code>, <code class="text-slate-300">csv</code>) para resolver problemas sin sobrecargar dependencias.</li>
+              <li>Aprender automatización de reportes empresariales en formato PDF con <code class="text-slate-300">fpdf2</code> y <code class="text-slate-300">reportlab</code>.</li>
+              <li>Implementar pipelines modernos de analítica con <code class="text-slate-300">numpy</code>, <code class="text-slate-300">pandas</code> y gráficos de alta calidad con <code class="text-slate-300">matplotlib</code>.</li>
+              <li>Crear arquitecturas de comunicación cliente-servidor con <code class="text-slate-300">requests</code> y microservicios con <code class="text-slate-300">flask</code>.</li>
+              <li>Entrenar y evaluar modelos predictivos reales con <code class="text-slate-300">scikit-learn</code>.</li>
+            </ul>
+          </div>
+
+        </div>
+
+      </div>
+    </section>
+
+    <!-- QUICKSTART & ENVIRONMENT SETUP SECTION -->
+    <section id="quickstart" class="space-y-6 pt-4">
+      <div class="border-b border-slate-800 pb-4">
+        <div class="flex items-center gap-3">
+          <div class="p-2 rounded-lg bg-emerald-500/10 border border-emerald-500/20 text-emerald-400">
+            <!-- Terminal Icon -->
+            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 9l3 3-3 3m5 0h3M5 20h14a2 2 0 002-2V6a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"></path>
+            </svg>
+          </div>
+          <div>
+            <h2 class="text-2xl font-bold text-slate-100 tracking-tight">Instalación y Configuración del Entorno</h2>
+            <p class="text-xs text-slate-400">Guía interactiva para aislar el entorno en Windows (PowerShell/CMD) o macOS/Linux</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="rounded-2xl bg-slate-900/80 border border-slate-800 overflow-hidden">
+        
+        <!-- Platform Tabs Header -->
+        <div class="flex items-center justify-between px-6 py-3 border-b border-slate-800 bg-slate-950/60">
+          <div class="flex items-center gap-2">
+            <button onclick="switchEnvTab(this, 'env-pwsh')" class="env-tab active px-3 py-1.5 rounded-lg text-xs font-mono font-medium bg-emerald-500/20 text-emerald-300 border border-emerald-500/30">
+              Windows (PowerShell)
+            </button>
+            <button onclick="switchEnvTab(this, 'env-cmd')" class="env-tab px-3 py-1.5 rounded-lg text-xs font-mono font-medium text-slate-400 hover:text-slate-200 border border-transparent">
+              Windows (CMD)
+            </button>
+            <button onclick="switchEnvTab(this, 'env-bash')" class="env-tab px-3 py-1.5 rounded-lg text-xs font-mono font-medium text-slate-400 hover:text-slate-200 border border-transparent">
+              macOS / Linux (Bash)
+            </button>
+          </div>
+          <span class="text-[11px] font-mono text-slate-400 hidden sm:inline">Python 3.9+ recomendado</span>
+        </div>
+
+        <!-- Terminal Panels -->
+        <div class="p-6">
+          
+          <!-- Windows PowerShell Tab -->
+          <div id="env-pwsh" class="env-pane space-y-4">
+            <div class="flex items-center justify-between text-xs text-slate-400">
+              <span>Pasos para PowerShell: crear venv, habilitar ejecución si aplica e instalar dependencias.</span>
+              <button onclick="copyCommand('cd python-librerias-ejemplos\npython -m venv venv\n.\\venv\\Scripts\\Activate.ps1\npip install -r requirements.txt', this)" class="text-emerald-400 hover:text-emerald-300 font-mono flex items-center gap-1">
+                <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 16H6a2 2 0 01-2-2V6a2 2 0 012-2h8a2 2 0 012 2v2m-6 12h8a2 2 0 002-2v-8a2 2 0 00-2-2h-8a2 2 0 00-2 2v8a2 2 0 002 2z"></path></svg>
+                Copiar bloque
+              </button>
+            </div>
+            <pre class="p-4 rounded-xl bg-slate-950 font-mono text-xs text-slate-200 leading-relaxed overflow-x-auto border border-slate-800"><code><span class="text-slate-500"># 1. Navegar a la carpeta</span>
+cd python-librerias-ejemplos
+
+<span class="text-slate-500"># 2. Crear entorno virtual aislado</span>
+python -m venv venv
+
+<span class="text-slate-500"># 3. Activar en PowerShell</span>
+.\venv\Scripts\Activate.ps1
+
+<span class="text-slate-500"># 4. Instalar librerías externas</span>
+pip install -r requirements.txt</code></pre>
+          </div>
+
+          <!-- Windows CMD Tab -->
+          <div id="env-cmd" class="env-pane hidden space-y-4">
+            <div class="flex items-center justify-between text-xs text-slate-400">
+              <span>Pasos para el símbolo del sistema clásico (CMD en Windows).</span>
+              <button onclick="copyCommand('cd python-librerias-ejemplos\npython -m venv venv\nvenv\\Scripts\\activate.bat\npip install -r requirements.txt', this)" class="text-emerald-400 hover:text-emerald-300 font-mono flex items-center gap-1">
+                <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 16H6a2 2 0 01-2-2V6a2 2 0 012-2h8a2 2 0 012 2v2m-6 12h8a2 2 0 002-2v-8a2 2 0 00-2-2h-8a2 2 0 00-2 2v8a2 2 0 002 2z"></path></svg>
+                Copiar bloque
+              </button>
+            </div>
+            <pre class="p-4 rounded-xl bg-slate-950 font-mono text-xs text-slate-200 leading-relaxed overflow-x-auto border border-slate-800"><code><span class="text-slate-500">:: 1. Entrar al directorio</span>
+cd python-librerias-ejemplos
+
+<span class="text-slate-500">:: 2. Crear entorno virtual</span>
+python -m venv venv
+
+<span class="text-slate-500">:: 3. Activar en CMD</span>
+venv\Scripts\activate.bat
+
+<span class="text-slate-500">:: 4. Instalar dependencias</span>
+pip install -r requirements.txt</code></pre>
+          </div>
+
+          <!-- macOS / Linux Bash Tab -->
+          <div id="env-bash" class="env-pane hidden space-y-4">
+            <div class="flex items-center justify-between text-xs text-slate-400">
+              <span>Pasos para sistemas basados en Unix (macOS / Linux / WSL).</span>
+              <button onclick="copyCommand('cd python-librerias-ejemplos\npython3 -m venv venv\nsource venv/bin/activate\npip install -r requirements.txt', this)" class="text-emerald-400 hover:text-emerald-300 font-mono flex items-center gap-1">
+                <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 16H6a2 2 0 01-2-2V6a2 2 0 012-2h8a2 2 0 012 2v2m-6 12h8a2 2 0 002-2v-8a2 2 0 00-2-2h-8a2 2 0 00-2 2v8a2 2 0 002 2z"></path></svg>
+                Copiar bloque
+              </button>
+            </div>
+            <pre class="p-4 rounded-xl bg-slate-950 font-mono text-xs text-slate-200 leading-relaxed overflow-x-auto border border-slate-800"><code><span class="text-slate-500"># 1. Navegar a la carpeta</span>
+cd python-librerias-ejemplos
+
+<span class="text-slate-500"># 2. Crear venv con python3</span>
+python3 -m venv venv
+
+<span class="text-slate-500"># 3. Activar entorno</span>
+source venv/bin/activate
+
+<span class="text-slate-500"># 4. Instalar dependencias</span>
+pip install -r requirements.txt</code></pre>
+          </div>
+
+        </div>
+
+        <!-- VS Code Integration Tip -->
+        <div class="px-6 py-4 bg-slate-950/40 border-t border-slate-800 flex flex-col sm:flex-row sm:items-center justify-between gap-3 text-xs text-slate-400">
+          <div class="flex items-center gap-2">
+            <span class="text-cyan-400">💡</span>
+            <span><strong>Integración con Visual Studio Code:</strong> Abre el proyecto ejecutando <code class="text-slate-300">code .</code> y presiona <code class="text-slate-300">F5</code> o el botón "Run Python File" en cualquier script.</span>
+          </div>
+          <button onclick="copyCommand('code .', this)" class="font-mono text-cyan-400 hover:text-cyan-300 whitespace-nowrap">code .</button>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- DETAILED README & DOCUMENTATION SECTION -->
+    <section id="documentation" class="space-y-6 pt-4">
+      <div class="border-b border-slate-800 pb-4">
+        <div class="flex items-center gap-3">
+          <div class="p-2 rounded-lg bg-purple-500/10 border border-purple-500/20 text-purple-400">
+            <!-- Book / Documentation Icon -->
+            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253"></path>
+            </svg>
+          </div>
+          <div>
+            <h2 class="text-2xl font-bold text-slate-100 tracking-tight">Resumen Ejecutivo del README.md</h2>
+            <p class="text-xs text-slate-400">Documentación técnica exhaustiva: tabla maestra de propósitos y comandos de ejecución</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Documentation Card with Master Table -->
+      <div class="rounded-2xl bg-slate-900/80 border border-slate-800 overflow-hidden shadow-xl">
+        <div class="p-6 border-b border-slate-800 flex flex-col sm:flex-row sm:items-center justify-between gap-4 bg-slate-950/40">
+          <div>
+            <h3 class="font-bold text-slate-100 text-base">Tabla Maestra de los 12 Scripts</h3>
+            <p class="text-xs text-slate-400">Cada script ha sido verificado con tipado estático indicativo y estilo PEP 8</p>
+          </div>
+          <span class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-semibold bg-emerald-500/10 text-emerald-400 border border-emerald-500/20">
+            <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg>
+            12/12 Scripts Verificados
+          </span>
+        </div>
+
+        <div class="overflow-x-auto">
+          <table class="w-full text-left border-collapse text-xs">
+            <thead>
+              <tr class="border-b border-slate-800 bg-slate-950/70 text-slate-400 font-mono">
+                <th class="py-3 px-4">#</th>
+                <th class="py-3 px-4">Archivo</th>
+                <th class="py-3 px-4">Librería</th>
+                <th class="py-3 px-4">Tipo</th>
+                <th class="py-3 px-4">Propósito Principal</th>
+                <th class="py-3 px-4 text-right">Comando</th>
+              </tr>
+            </thead>
+            <tbody class="divide-y divide-slate-800/60 font-sans text-slate-300">
+              
+              <tr class="hover:bg-slate-800/40 transition-colors">
+                <td class="py-3 px-4 font-mono font-bold text-emerald-400">01</td>
+                <td class="py-3 px-4 font-mono text-slate-200">01_math_example.py</td>
+                <td class="py-3 px-4 font-semibold text-emerald-300">math</td>
+                <td class="py-3 px-4"><span class="px-2 py-0.5 text-[10px] bg-emerald-500/10 text-emerald-300 rounded border border-emerald-500/20">Estándar</span></td>
+                <td class="py-3 px-4 text-slate-400">Constantes (π, e, τ), redondeos, trigonometría, combinatoria y precisión flotante.</td>
+                <td class="py-3 px-4 text-right">
+                  <button onclick="copyCommand('python 01_math_example.py', this)" class="font-mono text-[11px] text-emerald-400 hover:text-emerald-300 bg-slate-800/70 px-2 py-1 rounded">run</button>
+                </td>
+              </tr>
+
+              <tr class="hover:bg-slate-800/40 transition-colors">
+                <td class="py-3 px-4 font-mono font-bold text-emerald-400">02</td>
+                <td class="py-3 px-4 font-mono text-slate-200">02_random_example.py</td>
+                <td class="py-3 px-4 font-semibold text-emerald-300">random</td>
+                <td class="py-3 px-4"><span class="px-2 py-0.5 text-[10px] bg-emerald-500/10 text-emerald-300 rounded border border-emerald-500/20">Estándar</span></td>
+                <td class="py-3 px-4 text-slate-400">Muestreo aleatorio, permutaciones, distribución normal y contraseñas.</td>
+                <td class="py-3 px-4 text-right">
+                  <button onclick="copyCommand('python 02_random_example.py', this)" class="font-mono text-[11px] text-emerald-400 hover:text-emerald-300 bg-slate-800/70 px-2 py-1 rounded">run</button>
+                </td>
+              </tr>
+
+              <tr class="hover:bg-slate-800/40 transition-colors">
+                <td class="py-3 px-4 font-mono font-bold text-emerald-400">03</td>
+                <td class="py-3 px-4 font-mono text-slate-200">03_datetime_example.py</td>
+                <td class="py-3 px-4 font-semibold text-emerald-300">datetime</td>
+                <td class="py-3 px-4"><span class="px-2 py-0.5 text-[10px] bg-emerald-500/10 text-emerald-300 rounded border border-emerald-500/20">Estándar</span></td>
+                <td class="py-3 px-4 text-slate-400">Fechas, horas, parseo/formateo (strftime/strptime), timedelta y zonas horarias.</td>
+                <td class="py-3 px-4 text-right">
+                  <button onclick="copyCommand('python 03_datetime_example.py', this)" class="font-mono text-[11px] text-emerald-400 hover:text-emerald-300 bg-slate-800/70 px-2 py-1 rounded">run</button>
+                </td>
+              </tr>
+
+              <tr class="hover:bg-slate-800/40 transition-colors">
+                <td class="py-3 px-4 font-mono font-bold text-emerald-400">04</td>
+                <td class="py-3 px-4 font-mono text-slate-200">04_csv_example.py</td>
+                <td class="py-3 px-4 font-semibold text-emerald-300">csv</td>
+                <td class="py-3 px-4"><span class="px-2 py-0.5 text-[10px] bg-emerald-500/10 text-emerald-300 rounded border border-emerald-500/20">Estándar</span></td>
+                <td class="py-3 px-4 text-slate-400">Lectura y escritura con writer, reader, DictWriter y DictReader.</td>
+                <td class="py-3 px-4 text-right">
+                  <button onclick="copyCommand('python 04_csv_example.py', this)" class="font-mono text-[11px] text-emerald-400 hover:text-emerald-300 bg-slate-800/70 px-2 py-1 rounded">run</button>
+                </td>
+              </tr>
+
+              <tr class="hover:bg-slate-800/40 transition-colors">
+                <td class="py-3 px-4 font-mono font-bold text-cyan-400">05</td>
+                <td class="py-3 px-4 font-mono text-slate-200">05_fpdf_example.py</td>
+                <td class="py-3 px-4 font-semibold text-cyan-300">fpdf2</td>
+                <td class="py-3 px-4"><span class="px-2 py-0.5 text-[10px] bg-cyan-500/10 text-cyan-300 rounded border border-cyan-500/20">Externa</span></td>
+                <td class="py-3 px-4 text-slate-400">Generación de reportes PDF estructurados con tablas, encabezados y pies de página.</td>
+                <td class="py-3 px-4 text-right">
+                  <button onclick="copyCommand('python 05_fpdf_example.py', this)" class="font-mono text-[11px] text-cyan-400 hover:text-cyan-300 bg-slate-800/70 px-2 py-1 rounded">run</button>
+                </td>
+              </tr>
+
+              <tr class="hover:bg-slate-800/40 transition-colors">
+                <td class="py-3 px-4 font-mono font-bold text-cyan-400">06</td>
+                <td class="py-3 px-4 font-mono text-slate-200">06_reportlab_example.py</td>
+                <td class="py-3 px-4 font-semibold text-cyan-300">reportlab</td>
+                <td class="py-3 px-4"><span class="px-2 py-0.5 text-[10px] bg-cyan-500/10 text-cyan-300 rounded border border-cyan-500/20">Externa</span></td>
+                <td class="py-3 px-4 text-slate-400">Construcción de documentos PDF corporativos con flujo Platypus y estilos tipográficos.</td>
+                <td class="py-3 px-4 text-right">
+                  <button onclick="copyCommand('python 06_reportlab_example.py', this)" class="font-mono text-[11px] text-cyan-400 hover:text-cyan-300 bg-slate-800/70 px-2 py-1 rounded">run</button>
+                </td>
+              </tr>
+
+              <tr class="hover:bg-slate-800/40 transition-colors">
+                <td class="py-3 px-4 font-mono font-bold text-emerald-400">07</td>
+                <td class="py-3 px-4 font-mono text-slate-200">07_numpy_example.py</td>
+                <td class="py-3 px-4 font-semibold text-emerald-300">numpy</td>
+                <td class="py-3 px-4"><span class="px-2 py-0.5 text-[10px] bg-emerald-500/10 text-emerald-300 rounded border border-emerald-500/20">Externa</span></td>
+                <td class="py-3 px-4 text-slate-400">Computación vectorial, manipulación de arreglos, estadística y álgebra lineal.</td>
+                <td class="py-3 px-4 text-right">
+                  <button onclick="copyCommand('python 07_numpy_example.py', this)" class="font-mono text-[11px] text-emerald-400 hover:text-emerald-300 bg-slate-800/70 px-2 py-1 rounded">run</button>
+                </td>
+              </tr>
+
+              <tr class="hover:bg-slate-800/40 transition-colors">
+                <td class="py-3 px-4 font-mono font-bold text-emerald-400">08</td>
+                <td class="py-3 px-4 font-mono text-slate-200">08_pandas_example.py</td>
+                <td class="py-3 px-4 font-semibold text-emerald-300">pandas</td>
+                <td class="py-3 px-4"><span class="px-2 py-0.5 text-[10px] bg-emerald-500/10 text-emerald-300 rounded border border-emerald-500/20">Externa</span></td>
+                <td class="py-3 px-4 text-slate-400">Análisis y limpieza de DataFrames, filtrado, imputación y agregaciones (groupby).</td>
+                <td class="py-3 px-4 text-right">
+                  <button onclick="copyCommand('python 08_pandas_example.py', this)" class="font-mono text-[11px] text-emerald-400 hover:text-emerald-300 bg-slate-800/70 px-2 py-1 rounded">run</button>
+                </td>
+              </tr>
+
+              <tr class="hover:bg-slate-800/40 transition-colors">
+                <td class="py-3 px-4 font-mono font-bold text-emerald-400">09</td>
+                <td class="py-3 px-4 font-mono text-slate-200">09_matplotlib_example.py</td>
+                <td class="py-3 px-4 font-semibold text-emerald-300">matplotlib</td>
+                <td class="py-3 px-4"><span class="px-2 py-0.5 text-[10px] bg-emerald-500/10 text-emerald-300 rounded border border-emerald-500/20">Externa</span></td>
+                <td class="py-3 px-4 text-slate-400">Visualización con subplots (líneas, barras, histogramas y dispersión).</td>
+                <td class="py-3 px-4 text-right">
+                  <button onclick="copyCommand('python 09_matplotlib_example.py', this)" class="font-mono text-[11px] text-emerald-400 hover:text-emerald-300 bg-slate-800/70 px-2 py-1 rounded">run</button>
+                </td>
+              </tr>
+
+              <tr class="hover:bg-slate-800/40 transition-colors">
+                <td class="py-3 px-4 font-mono font-bold text-cyan-400">10</td>
+                <td class="py-3 px-4 font-mono text-slate-200">10_requests_example.py</td>
+                <td class="py-3 px-4 font-semibold text-cyan-300">requests</td>
+                <td class="py-3 px-4"><span class="px-2 py-0.5 text-[10px] bg-cyan-500/10 text-cyan-300 rounded border border-cyan-500/20">Externa</span></td>
+                <td class="py-3 px-4 text-slate-400">Consumo de APIs REST (GET, POST), cabeceras HTTP, timeouts y manejo de errores.</td>
+                <td class="py-3 px-4 text-right">
+                  <button onclick="copyCommand('python 10_requests_example.py', this)" class="font-mono text-[11px] text-cyan-400 hover:text-cyan-300 bg-slate-800/70 px-2 py-1 rounded">run</button>
+                </td>
+              </tr>
+
+              <tr class="hover:bg-slate-800/40 transition-colors">
+                <td class="py-3 px-4 font-mono font-bold text-cyan-400">11</td>
+                <td class="py-3 px-4 font-mono text-slate-200">11_flask_example.py</td>
+                <td class="py-3 px-4 font-semibold text-cyan-300">flask</td>
+                <td class="py-3 px-4"><span class="px-2 py-0.5 text-[10px] bg-cyan-500/10 text-cyan-300 rounded border border-cyan-500/20">Externa</span></td>
+                <td class="py-3 px-4 text-slate-400">Microservicio API REST con rutas dinámicas, validación JSON y servidor web.</td>
+                <td class="py-3 px-4 text-right">
+                  <button onclick="copyCommand('python 11_flask_example.py', this)" class="font-mono text-[11px] text-cyan-400 hover:text-cyan-300 bg-slate-800/70 px-2 py-1 rounded">run</button>
+                </td>
+              </tr>
+
+              <tr class="hover:bg-slate-800/40 transition-colors">
+                <td class="py-3 px-4 font-mono font-bold text-purple-400">12</td>
+                <td class="py-3 px-4 font-mono text-slate-200">12_sklearn_example.py</td>
+                <td class="py-3 px-4 font-semibold text-purple-300">scikit-learn</td>
+                <td class="py-3 px-4"><span class="px-2 py-0.5 text-[10px] bg-purple-500/10 text-purple-300 rounded border border-purple-500/20">Externa</span></td>
+                <td class="py-3 px-4 text-slate-400">Flujo integral de Machine Learning: partición, escalado, RandomForest y evaluación.</td>
+                <td class="py-3 px-4 text-right">
+                  <button onclick="copyCommand('python 12_sklearn_example.py', this)" class="font-mono text-[11px] text-purple-400 hover:text-purple-300 bg-slate-800/70 px-2 py-1 rounded">run</button>
+                </td>
+              </tr>
+
+            </tbody>
+          </table>
+        </div>
+
+        <div class="p-4 bg-slate-950/60 border-t border-slate-800 text-xs text-slate-400 flex flex-col sm:flex-row sm:items-center justify-between gap-3">
+          <span>Consulta el archivo <code class="text-slate-200 font-mono">README.md</code> para ver los códigos de retorno y explicaciones teóricas completas.</span>
+          <a href="#quickstart" class="text-emerald-400 hover:text-emerald-300 font-medium inline-flex items-center gap-1">
+            <span>Ver instrucciones de instalación</span>
+            <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path></svg>
+          </a>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- TOAST NOTIFICATION -->
+  <div id="toast" class="fixed bottom-6 right-6 z-50 transform translate-y-20 opacity-0 transition-all duration-300 pointer-events-none">
+    <div class="flex items-center gap-2.5 px-4 py-3 rounded-xl bg-slate-800/95 border border-emerald-500/40 text-xs text-emerald-300 shadow-2xl backdrop-blur-md">
+      <svg class="w-4 h-4 text-emerald-400 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
+      </svg>
+      <span id="toastMsg" class="font-medium">Copiado al portapapeles</span>
+    </div>
+  </div>
+
+  <!-- FOOTER -->
+  <footer class="relative z-10 border-t border-slate-800/80 bg-[#060A12] mt-24">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+      <div class="flex flex-col md:flex-row items-center justify-between gap-6">
+        
+        <!-- Academic Info -->
+        <div class="text-center md:text-left space-y-1">
+          <div class="flex items-center justify-center md:justify-start gap-2">
+            <span class="font-bold text-slate-100 text-sm">Python Libraries Showcase</span>
+            <span class="px-2 py-0.5 text-[10px] font-semibold bg-emerald-500/10 text-emerald-400 border border-emerald-500/30 rounded-full">Unidad 2 Práctica 1</span>
+          </div>
+          <p class="text-xs text-slate-400">Colección educativa de scripts para desarrollo de software y computación científica.</p>
+          <p class="text-[11px] text-slate-400 font-mono">Diseñado con Tailwind CSS, Vanilla JS y estética de alta tecnología.</p>
+        </div>
+
+        <!-- Social & Links -->
+        <div class="flex items-center gap-4 text-xs text-slate-400">
+          <a href="#examples" class="hover:text-emerald-400 transition-colors">Ejemplos</a>
+          <span class="text-slate-700">•</span>
+          <a href="#repository" class="hover:text-cyan-400 transition-colors">Repositorio</a>
+          <span class="text-slate-700">•</span>
+          <a href="#quickstart" class="hover:text-cyan-400 transition-colors">Setup</a>
+          <span class="text-slate-700">•</span>
+          <a href="#documentation" class="hover:text-emerald-400 transition-colors">Documentación</a>
+        </div>
+
+      </div>
+
+      <div class="mt-8 pt-8 border-t border-slate-800/60 flex flex-col sm:flex-row items-center justify-between gap-4 text-[11px] text-slate-400">
+        <div>© 2026 Portafolio Académico de Python • Todos los derechos reservados.</div>
+        <div class="flex items-center gap-2">
+          <span>Stack: Python 3.9+ | HTML5 | Tailwind CSS</span>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <!-- JAVASCRIPT LOGIC -->
+  <script>
+    // Tab switching for Card Snippet vs Output
+    function switchTab(btn, showId, hideId) {
+      const parent = btn.closest('.lib-card');
+      const showPane = parent.querySelector('#' + showId);
+      const hidePane = parent.querySelector('#' + hideId);
+      
+      // Update Tab Styles
+      const buttons = btn.parentElement.querySelectorAll('.tab-btn');
+      buttons.forEach(b => {
+        b.classList.remove('text-emerald-400', 'text-cyan-400', 'text-purple-400', 'border-emerald-400', 'border-cyan-400', 'border-purple-400');
+        b.classList.add('text-slate-400', 'border-transparent');
+      });
+      btn.classList.remove('text-slate-400', 'border-transparent');
+      btn.classList.add('text-emerald-400', 'border-emerald-400');
+
+      // Toggle Panes
+      if (showPane) showPane.classList.remove('hidden');
+      if (hidePane) hidePane.classList.add('hidden');
+    }
+
+    // Switch Environment Setup Tabs
+    function switchEnvTab(btn, paneId) {
+      document.querySelectorAll('.env-tab').forEach(b => {
+        b.classList.remove('active', 'bg-emerald-500/20', 'text-emerald-300', 'border-emerald-500/30');
+        b.classList.add('text-slate-400', 'border-transparent');
+      });
+      btn.classList.add('active', 'bg-emerald-500/20', 'text-emerald-300', 'border-emerald-500/30');
+      btn.classList.remove('text-slate-400', 'border-transparent');
+
+      document.querySelectorAll('.env-pane').forEach(p => p.classList.add('hidden'));
+      const activePane = document.getElementById(paneId);
+      if (activePane) activePane.classList.remove('hidden');
+    }
+
+    // Toast Notification System
+    function showToast(message) {
+      const toast = document.getElementById('toast');
+      const toastMsg = document.getElementById('toastMsg');
+      toastMsg.textContent = message;
+      toast.classList.remove('translate-y-20', 'opacity-0');
+      toast.classList.add('translate-y-0', 'opacity-100');
+
+      setTimeout(() => {
+        toast.classList.remove('translate-y-0', 'opacity-100');
+        toast.classList.add('translate-y-20', 'opacity-0');
+      }, 2500);
+    }
+
+    // Copy Text to Clipboard Helper
+    function copyText(text, successMsg) {
+      if (navigator.clipboard && window.isSecureContext) {
+        navigator.clipboard.writeText(text).then(() => {
+          showToast(successMsg);
+        }).catch(() => fallbackCopy(text, successMsg));
+      } else {
+        fallbackCopy(text, successMsg);
+      }
+    }
+
+    function fallbackCopy(text, successMsg) {
+      const textArea = document.createElement("textarea");
+      textArea.value = text;
+      textArea.style.position = "fixed";
+      textArea.style.left = "-999999px";
+      document.body.appendChild(textArea);
+      textArea.focus();
+      textArea.select();
+      try {
+        document.execCommand('copy');
+        showToast(successMsg);
+      } catch (err) {
+        console.error('Error al copiar:', err);
+      }
+      document.body.removeChild(textArea);
+    }
+
+    // Copy command
+    function copyCommand(cmd, btn) {
+      copyText(cmd, 'Comando copiado: ' + cmd.split('\n')[0]);
+      if (btn) {
+        const origText = btn.innerHTML;
+        btn.innerHTML = '<span>¡Listo!</span>';
+        setTimeout(() => { btn.innerHTML = origText; }, 1800);
+      }
+    }
+
+    // Copy Card snippet
+    function copyCardSnippet(snippetId, btn) {
+      const elem = document.getElementById(snippetId);
+      if (elem) {
+        copyText(elem.innerText, 'Código copiado al portapapeles');
+        if (btn) {
+          const original = btn.innerHTML;
+          btn.innerHTML = '<span class="text-emerald-400 text-[10px]">✓</span>';
+          setTimeout(() => { btn.innerHTML = original; }, 1500);
+        }
+      }
+    }
+
+    // Copy requirements.txt
+    function copyRequirements(btn) {
+      const rawReq = document.getElementById('rawRequirements').innerText;
+      copyText(rawReq, 'requirements.txt copiado al portapapeles');
+    }
+
+    // Search and Category Filtering Logic
+    const searchInput = document.getElementById('searchInput');
+    const resultsCounter = document.getElementById('resultsCounter');
+    const filterTabs = document.querySelectorAll('.filter-tab');
+    const cards = document.querySelectorAll('.lib-card');
+
+    let currentCategory = 'all';
+
+    function filterCards() {
+      const query = searchInput.value.toLowerCase().trim();
+      let visibleCount = 0;
+
+      cards.forEach(card => {
+        const cat = card.getAttribute('data-category');
+        const tags = card.getAttribute('data-tags').toLowerCase();
+        const text = card.innerText.toLowerCase();
+
+        const matchesCat = (currentCategory === 'all' || cat === currentCategory);
+        const matchesQuery = query === '' || tags.includes(query) || text.includes(query);
+
+        if (matchesCat && matchesQuery) {
+          card.classList.remove('hidden');
+          visibleCount++;
+        } else {
+          card.classList.add('hidden');
+        }
+      });
+
+      resultsCounter.textContent = `${visibleCount}/12`;
+    }
+
+    searchInput.addEventListener('input', filterCards);
+
+    filterTabs.forEach(tab => {
+      tab.addEventListener('click', () => {
+        filterTabs.forEach(t => {
+          t.classList.remove('active', 'bg-emerald-500/20', 'text-emerald-300', 'border-emerald-500/40');
+          t.classList.add('bg-slate-900/60', 'text-slate-400', 'border-slate-800');
+        });
+        tab.classList.add('active', 'bg-emerald-500/20', 'text-emerald-300', 'border-emerald-500/40');
+        tab.classList.remove('bg-slate-900/60', 'text-slate-400', 'border-slate-800');
+
+        currentCategory = tab.getAttribute('data-cat');
+        filterCards();
+      });
+    });
+
+    // Mobile Menu Toggle
+    const mobileMenuBtn = document.getElementById('mobileMenuBtn');
+    const mobileMenu = document.getElementById('mobileMenu');
+    mobileMenuBtn.addEventListener('click', () => {
+      mobileMenu.classList.toggle('hidden');
+    });
+
+    // Close mobile menu upon clicking links
+    mobileMenu.querySelectorAll('a').forEach(link => {
+      link.addEventListener('click', () => mobileMenu.classList.add('hidden'));
+    });
+  </script>
+</body>
+</html>
